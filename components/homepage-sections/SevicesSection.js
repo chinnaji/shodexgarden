@@ -25,17 +25,27 @@ function ServicesSection() {
   ];
 
   return (
-    <section className="my-6 w-full text-grey-500">
-      <h2 className="text-lime-500 text-center font-semibold text-3xl mb-3">
+    <section className="mt-32 w-full text-grey-500">
+      <h2 className="text-lime-500 text-center font-semibold text-3xl mb-24">
         Our Services
       </h2>
 
       <div className="flex flex-wrap justify-center my-5">
-        {services.map((service) => (
-          <div className="w-full  lg:w-1/3 p-2 text-center" key={service.title}>
+        {services.map((service, index) => (
+          <div
+            className={`w-full  lg:w-1/3 p-2 text-center ${
+              index === 1 ? "lg:mt-[-50px]" : ""
+            }`}
+            key={service.title}
+          >
             {/* <div className=""> */}
-            <div className="w-64 h-52 relative mx-auto shadow-lg rounded-full">
-              <Image src={service.image} layout="fill" objectFit="cover" />
+            <div className="w-64 h-52 relative mx-auto ">
+              <Image
+                className=" shadow-lg rounded-lg"
+                src={service.image}
+                layout="fill"
+                objectFit="cover"
+              />
             </div>
             <div className="text-center">
               <h3 className="font-semibold text-xl mt-6 mb-2">
@@ -49,7 +59,7 @@ function ServicesSection() {
       </div>
 
       <div className="text-center">
-        <button className="mx-auto hover:bg-lime-600 ease-in-out duration-300 bg-lime-500 py-3  mt-6 px-6  rounded lg:text-sm font-bold text-zinc-50">
+        <button className="mx-auto hover:bg-lime-600 ease-in-out duration-300 bg-lime-500 py-3  mt-6 px-14  rounded lg:text-sm font-bold text-zinc-50">
           <Link href="/services">See More</Link>
         </button>
       </div>

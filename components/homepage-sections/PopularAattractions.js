@@ -25,8 +25,8 @@ function PopularAattractions() {
   ];
 
   return (
-    <section className="my-10 w-full text-grey-500">
-      <h2 className="text-lime-500 text-center font-semibold text-3xl mb-3">
+    <section className="mt-32 w-full text-grey-500">
+      <h2 className="text-lime-500 text-center font-semibold text-3xl mb-16">
         Popular Attractions
       </h2>
 
