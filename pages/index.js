@@ -10,7 +10,7 @@ import Hero2 from "../components/homepage-sections/Hero2";
 // import { FaDirections } from "react-icons/fa";
 
 export default function Home() {
-  const [isis, setisis] = useState(true);
+  // const [isis, setisis] = useState(true);
   return (
     <main className="h-full w-full  text-grey-600">
       {/* <FaDirections
