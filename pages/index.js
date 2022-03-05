@@ -2,7 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Hero from "../components/homepage-sections/Hero";
 import PopularAattractions from "../components/homepage-sections/PopularAattractions";
-import ServicesSection from "../components/homepage-sections/sevicesSection";
+import ServicesSection from "../components/homepage-sections/SevicesSection";
 
 export default function Home() {
   return (
