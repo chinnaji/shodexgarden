@@ -38,7 +38,7 @@ function PopularAattractions() {
           >
             {/* <div className=""> */}
             <div className="w-64 h-52 relative mx-auto ">
-              <Image src={popularAattraction.image} layout="fill" />
+              <Image src={popularAattraction.image} layout="fill" alt="popular attractions" />
             </div>
             <div className="text-center">
               <h3 className="font-semibold text-xl mt-6 mb-2">

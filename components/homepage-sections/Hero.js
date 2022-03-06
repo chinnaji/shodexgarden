@@ -15,6 +15,7 @@ function Hero() {
           objectFit="cover"
           priority
           loading="eager"
+          alt="hero background image"
         />
 
         <div className="absolute inset-0 bg-[#00000080] ">

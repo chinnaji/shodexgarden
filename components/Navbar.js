@@ -34,7 +34,7 @@ function Navbar() {
     <header className="w-full text-grey-500 sticky top-0 bg-white z-50">
       <nav className=" max-w-[1400px] mx-auto flex items-center justify-between px-3">
         <div className="w-24 h-16 relative">
-          <Image src={logo} layout="fill" />
+          <Image src={logo} layout="fill" alt="shodex garden logo" />
         </div>
 
         <div className="flex">

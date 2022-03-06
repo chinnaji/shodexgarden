@@ -32,6 +32,7 @@ function ImageGallery() {
                 src={image}
                 layout="fill"
                 objectFit="cover"
+                alt="shodex garden instagram photos"
               />
             </div>
           </div>

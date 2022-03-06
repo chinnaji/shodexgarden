@@ -20,6 +20,7 @@ function Hero2() {
           objectFit="cover"
           priority
           loading="eager"
+          alt="hero background image"
         />
       </div>
       <div className="bg-lime-500 w-full h-[100px] bottom-0 absolute z-10"></div>
