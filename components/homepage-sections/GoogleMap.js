@@ -19,7 +19,7 @@ function GoogleMap() {
           width={100 + "%"}
           height={400 + "px"}
           style={{ border: 0 }}
-          allowfullscreen=""
+          allowFullScreen=""
           loading="lazy"
         ></iframe>
       </div>

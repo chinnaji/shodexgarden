@@ -14,7 +14,7 @@ function ImageGallery() {
   const images = [ig1, ig2, ig3, ig4, ig5, ig6, ig7, ig8];
   return (
     <section className="mt-32 ">
-      <h2 className="text-lime-500 text-center font-semibold text-3xl ">
+      <h2 className="text-lime-500 text-center font-semibold text-4xl ">
         #ShodexGarden
       </h2>
       <p className="w-full mb-10 text-center">
@@ -22,8 +22,11 @@ function ImageGallery() {
       </p>
       <div className="flex flex-wrap">
         {images.map((image, index) => (
-          <div className="p-2 w-full sm:w-1/2 md:w-1/2 xl:w-1/4  h-52">
-            <div className="w-full h-full   relative mx-auto " key={index}>
+          <div
+            className="p-2 w-full sm:w-1/2 md:w-1/2 xl:w-1/4  h-52"
+            key={index}
+          >
+            <div className="w-full h-full   relative mx-auto ">
               <Image
                 className=" shadow-lg rounded-md"
                 src={image}

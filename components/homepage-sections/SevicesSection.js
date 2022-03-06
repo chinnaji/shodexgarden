@@ -26,40 +26,36 @@ function ServicesSection() {
 
   return (
     <section className="mt-32 w-full text-grey-500">
-      <h2 className="text-lime-500 text-center font-semibold text-3xl mb-24">
+      <h2 className="text-lime-500 text-center font-semibold text-4xl mb-32">
         Our Services
       </h2>
 
-      <div className="flex flex-wrap justify-center my-5">
+      <div className="flex flex-wrap justify-center my-5 relative">
         {services.map((service, index) => (
           <div
-            className={`w-full  lg:w-1/3 p-2 text-center ${
-              index === 1 ? "lg:mt-[-50px]" : ""
+            className={`w-full h-[400px] lg:w-1/3 p-2 text-center relative ${
+              index === 1 ? "lg:mt-[-70px]" : ""
             }`}
             key={service.title}
           >
             {/* <div className=""> */}
-            <div className="w-64 h-52 relative mx-auto ">
-              <Image
-                className=" shadow-lg rounded-lg"
-                src={service.image}
-                layout="fill"
-                objectFit="cover"
-              />
+
+            <div className="max-w-xs h-full  relative mx-auto shadow-lg rounded-lg overflow-hidden">
+              <Image src={service.image} layout="fill" objectFit="cover" />
+
+              <div className="   absolute flex pb-12 px-8 flex-col justify-end inset-0 bg-[#00000080] z-40 text-center text-white ">
+                <h3 className="  font-bold text-3xl mt-6 mb-2">
+                  {service.title}
+                </h3>
+                <p className="  text-base">{service.text}</p>
+              </div>
             </div>
-            <div className="text-center">
-              <h3 className="font-semibold text-xl mt-6 mb-2">
-                {service.title}
-              </h3>
-              <p className="text-base">{service.text}</p>
-            </div>
-            {/* </div> */}
           </div>
         ))}
       </div>
 
       <div className="text-center">
-        <button className="mx-auto hover:bg-lime-600 ease-in-out duration-300 bg-lime-500 py-3  mt-6 px-14  rounded lg:text-sm font-bold text-zinc-50">
+        <button className="mx-auto hover:bg-lime-600 ease-in-out duration-300 bg-lime-500 py-4  mt-8 px-14  rounded lg:text-sm font-bold text-zinc-50">
           <Link href="/services">See More</Link>
         </button>
       </div>

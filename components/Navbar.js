@@ -54,7 +54,7 @@ function Navbar() {
             <ul className="flex lg:flex-row ml-auto flex-col justify-center items-center h-full">
               {navLinks.map((navLink) => (
                 <li
-                  className=" flex flex-col items-center lg:text-base  px-4 py-2 my-8 lg:my-1 font-medium text-xl lg:capitalize uppercase"
+                  className="hover:text-lime-500 flex flex-col items-center lg:text-base  px-4 py-2 my-8 lg:my-1 font-medium text-xl lg:capitalize uppercase"
                   onClick={() => setIsSidebar(false)}
                   key={navLink.title}
                 >

@@ -1,5 +1,5 @@
 import React from "react";
-import heroBg from "../../images/herobg.svg";
+import heroBg from "../../images/heroimg.png";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -9,7 +9,13 @@ function Hero() {
       className={`w-full h-[calc(100vh-4rem)] z-20  relative text-zinc-50`}
     >
       <div className="w-full h-full relative">
-        <Image src={heroBg} layout="fill" objectFit="cover" priority />
+        <Image
+          src={heroBg}
+          layout="fill"
+          objectFit="cover"
+          priority
+          loading="eager"
+        />
 
         <div className="absolute inset-0 bg-[#00000080] ">
           <div className="max-w-[1400px] mx-auto h-full px-4 flex items-center ">
