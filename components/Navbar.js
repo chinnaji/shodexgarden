@@ -71,7 +71,7 @@ function Navbar() {
 
           <div className="flex items-center">
             <button className="hover:bg-lime-600 ease-in-out duration-300 bg-lime-500 lg:py-2 lg:px-3 px-2 py-1 rounded text-sm font-bold text-zinc-50">
-              <Link href="/buy-tickets">Buy Tickets</Link>
+              <Link href="/tickets">Buy Tickets</Link>
             </button>
 
             <HiOutlineMenu

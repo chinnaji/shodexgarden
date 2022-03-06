@@ -10,19 +10,19 @@ function Footer() {
           <ul>
             <li className="my-2">
               {" "}
-              <a href="/buy-tickets">Buy Tickets</a>{" "}
+              <a href="/tickets">Buy Tickets</a>{" "}
             </li>
             <li className="my-2">
               {" "}
-              <a href="/buy-tickets">Privacy/Policy</a>{" "}
+              <a href="/tickets">Privacy/Policy</a>{" "}
             </li>
             <li className="my-2">
               {" "}
-              <a href="/buy-tickets">About Us</a>{" "}
+              <a href="/tickets">About Us</a>{" "}
             </li>
             <li className="my-2">
               {" "}
-              <a href="/buy-tickets">Services</a>{" "}
+              <a href="/tickets">Services</a>{" "}
             </li>
           </ul>
         </div>
@@ -32,15 +32,15 @@ function Footer() {
           <ul>
             <li className="my-2">
               {" "}
-              <a href="/buy-tickets">Instagram</a>{" "}
+              <a href="/tickets">Instagram</a>{" "}
             </li>
             <li className="my-2">
               {" "}
-              <a href="/buy-tickets">Facebook</a>{" "}
+              <a href="/tickets">Facebook</a>{" "}
             </li>
             <li className="my-2">
               {" "}
-              <a href="/buy-tickets">Twitter</a>{" "}
+              <a href="/tickets">Twitter</a>{" "}
             </li>
           </ul>
         </div>
@@ -50,15 +50,15 @@ function Footer() {
           <ul>
             <li className="my-2">
               {" "}
-              <a href="/buy-tickets">09063646842</a>{" "}
+              <a href="/tickets">09063646842</a>{" "}
             </li>
             <li className="my-2">
               {" "}
-              <a href="/buy-tickets">251/253 Ikorodu Rd, Ilupeju, Lagos</a>{" "}
+              <a href="/tickets">251/253 Ikorodu Rd, Ilupeju, Lagos</a>{" "}
             </li>
             <li className="my-2">
               {" "}
-              <a href="/buy-tickets">admin@shodexgarden.com</a>{" "}
+              <a href="/tickets">admin@shodexgarden.com</a>{" "}
             </li>
           </ul>
         </div>
