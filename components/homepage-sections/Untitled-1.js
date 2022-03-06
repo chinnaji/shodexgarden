@@ -13,6 +13,7 @@
           src={service.image}
           layout="fill"
           objectFit="cover"
+          alt="dd"
         />
       </div>
       <div className="text-center">
