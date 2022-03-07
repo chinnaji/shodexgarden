@@ -21,7 +21,7 @@ function Hero() {
         <div className="absolute inset-0 bg-[#00000080] ">
           <div className="max-w-[1400px] mx-auto h-full px-4 flex items-center ">
             <div className="lg:max-w-screen-md w-fll lg:text-left text-center">
-              <h1 className="text-5xl font-semibold  my-4">
+              <h1 className="text-5xl font-black my-4">
                 If You Love Fun, You’ll Love Shodex Garden{" "}
               </h1>
               {/* <h1 className="text-5xl font-semibold  my-4">

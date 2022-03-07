@@ -4,10 +4,10 @@ import Image from "next/image";
 import { HiOutlineMenu } from "react-icons/hi";
 import { MdOutlineClose } from "react-icons/md";
 import Link from "next/link";
-// import { useRouter } from "next/router";
+import { useRouter } from "next/router";
 
 function Navbar() {
-  // const router = useRouter();
+  const router = useRouter();
 
   const navLinks = [
     {
@@ -32,7 +32,7 @@ function Navbar() {
 
   return (
     <header className="w-full text-grey-500 sticky top-0 bg-white z-50">
-      <nav className=" max-w-[1400px] mx-auto flex items-center justify-between px-3">
+      <nav className=" max-w-[1400px] mx-auto flex items-center justify-between px-5 md:px-3">
         <div className="w-24 h-16 relative">
           <Image src={logo} layout="fill" alt="shodex garden logo" />
         </div>
@@ -70,9 +70,11 @@ function Navbar() {
           </div>
 
           <div className="flex items-center">
-            <button className="hover:bg-lime-600 ease-in-out duration-300 bg-lime-500 lg:py-2 lg:px-3 px-2 py-1 rounded text-sm font-bold text-zinc-50">
-              <Link href="/tickets">Buy Tickets</Link>
-            </button>
+            {router.pathname === "/tickets" ? null : (
+              <button className="hover:bg-lime-600 ease-in-out duration-300 bg-lime-500 lg:py-2 lg:px-3 px-2 py-1 rounded text-sm font-bold text-zinc-50">
+                <Link href="/tickets">Buy Tickets</Link>
+              </button>
+            )}
 
             <HiOutlineMenu
               onClick={() => setIsSidebar(true)}
