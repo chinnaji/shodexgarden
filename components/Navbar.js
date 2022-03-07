@@ -34,7 +34,9 @@ function Navbar() {
     <header className="w-full text-grey-500 sticky top-0 bg-white z-50">
       <nav className=" max-w-[1400px] mx-auto flex items-center justify-between px-5 md:px-3">
         <div className="w-24 h-16 relative">
-          <Image src={logo} layout="fill" alt="shodex garden logo" />
+          <Link href="/">
+            <Image src={logo} layout="fill" alt="shodex garden logo" priority />
+          </Link>
         </div>
 
         <div className="flex">
@@ -71,14 +73,14 @@ function Navbar() {
 
           <div className="flex items-center">
             {router.pathname === "/tickets" ? null : (
-              <button className="hover:bg-lime-600 ease-in-out duration-300 bg-lime-500 lg:py-2 lg:px-3 px-2 py-1 rounded text-sm font-bold text-zinc-50">
+              <button className="hover:bg-lime-600 ease-in-out duration-300 bg-lime-500  lg:px-3 px-2 py-2 rounded text-sm font-bold text-zinc-50">
                 <Link href="/tickets">Buy Tickets</Link>
               </button>
             )}
 
             <HiOutlineMenu
               onClick={() => setIsSidebar(true)}
-              className="ml-6 mr-1 lg:hidden cursor-pointer text-xl"
+              className="ml-4 mr-1 lg:hidden cursor-pointer text-xl"
             />
           </div>
         </div>

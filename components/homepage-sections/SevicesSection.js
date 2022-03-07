@@ -4,7 +4,7 @@ import Link from "next/link";
 import service1 from "../../images/landscaping.jpg";
 import service2 from "../../images/gardening.jpg";
 import service3 from "../../images/events.jpg";
-
+import { BsArrowRightShort } from "react-icons/bs";
 function ServicesSection() {
   const services = [
     {
@@ -40,14 +40,26 @@ function ServicesSection() {
           >
             {/* <div className=""> */}
 
-            <div className="max-w-xs h-full  relative mx-auto shadow-lg rounded-lg overflow-hidden">
-              <Image src={service.image} layout="fill" objectFit="cover" alt="shodex garden services" />
+            <div className="max-w-xs h-full  relative mx-auto shadow-lg rounded-lg ">
+              <Image
+                src={service.image}
+                layout="fill"
+                objectFit="cover"
+                alt="shodex garden services"
+                className="rounded-lg"
+              />
 
-              <div className="   absolute flex pb-12 px-8 flex-col justify-end inset-0 bg-[#00000080] z-40 text-center text-white ">
+              <div className="  rounded-lg absolute flex pb-12 px-8 flex-col justify-end inset-0 bg-[#00000080] z-40 text-center text-white ">
                 <h3 className="  font-bold text-3xl mt-6 mb-2">
                   {service.title}
                 </h3>
                 <p className="  text-base">{service.text}</p>
+
+                <div className="absolute right-[-20px] top-20  w-14 hover:cursor-pointer h-14 bg-lime-500 flex items-center justify-center text-white rounded-full text-lg mx-auto mt-3">
+                  <Link href={`/services/${service.title.toLocaleLowerCase()}`}>
+                    <BsArrowRightShort className="text-2xl" />
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

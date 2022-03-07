@@ -25,7 +25,7 @@ function TicketsListing({ ticketItems }) {
 
   return (
     <>
-      <section className="max-w-[1400px] mx-auto my-5  px-3 pt-10">
+      <section className="max-w-[1400px] mx-auto my-5 mb-40  px-3 pt-10">
         <h2 className="text-lime-500 text-center font-semibold text-3xl mb-8">
           Book a Ticket, Come Enjoy Yourself!{" "}
         </h2>

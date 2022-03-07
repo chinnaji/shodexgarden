@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import GoogleMap from "../components/homepage-sections/GoogleMap";
 import TicketsListing from "../components/TicketsListing";
 import ticketImage1 from "../images/tickets (1).jpg";
 import ticketImage2 from "../images/tickets (2).jpg";
@@ -37,9 +38,12 @@ function tickets() {
   ];
 
   return (
-    <main>
-      <TicketsListing ticketItems={ticketItems} />
-    </main>
+    <>
+      <main>
+        <TicketsListing ticketItems={ticketItems} />
+      </main>
+      <GoogleMap />
+    </>
   );
 }
 

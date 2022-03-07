@@ -13,7 +13,7 @@ import ig8 from "../../images/ig/img (8).jpg";
 function ImageGallery() {
   const images = [ig1, ig2, ig3, ig4, ig5, ig6, ig7, ig8];
   return (
-    <section className="mt-32 ">
+    <section className="mt-32 mb-40">
       <h2 className="text-lime-500 text-center font-semibold text-4xl ">
         #ShodexGarden
       </h2>
