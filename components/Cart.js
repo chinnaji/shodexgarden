@@ -52,7 +52,7 @@ function Cart({ cart, setCart, total }) {
         <>
           {cart.sort().map((cartItem, index) => (
             <div
-              className="md:bg-white bg-lime-50 py-5 px-6 rounded-lg h-fit overflow-hidden my-5 md:my-10 md-my-0 w-full flex md:flex-row flex-col md:items-center"
+              className="md:bg-white bg-zinc-100 py-5 px-6 rounded-lg h-fit overflow-hidden my-5 md:my-10 md-my-0 w-full flex md:flex-row flex-col md:items-center"
               key={cartItem.id}
             >
               {/* remove item */}

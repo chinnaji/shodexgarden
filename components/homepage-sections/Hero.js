@@ -18,8 +18,8 @@ function Hero() {
               Love Shodex Garden
             </h1>
             <div>
-              <Link href="/">
-                <button className="mx-auto md:mx-0 flex px-10 py-3 text-base my-6 md:my-12 bg-amber-500 hover:bg-amber-600 cursor-pointer rounded transition duration-150 ease-out hover:ease-in">
+              <Link href="/" passHref>
+                <button className="mx-auto md:mx-0 flex px-10 py-3 text-base my-6 md:my-12 bg-lime-500 hover:bg-lime-600 cursor-pointer rounded transition duration-150 ease-out hover:ease-in">
                   <span className="mr-2 font-semibold">About Us</span>
                   <span>
                     <BsArrowRightShort className="text-2xl" />
