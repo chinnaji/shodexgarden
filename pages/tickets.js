@@ -10,14 +10,14 @@ function tickets() {
     {
       id: "01",
       title: "Swimming Ticket (Adults)",
-      image: ticketImage1,
+      image: ticketImage2,
       price: "3500",
       quantity: 1,
     },
     {
       id: "02",
       title: "Swimming Ticket (Kids)",
-      image: ticketImage2,
+      image: ticketImage1,
       price: "1200",
       quantity: 1,
     },

@@ -1,7 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { BiX } from "react-icons/bi";
 
 function Modal({ setIsModal, isModal, children }) {
+  useEffect(() => {
+    if (isModal) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  });
+
   return (
     <>
       {isModal ? (

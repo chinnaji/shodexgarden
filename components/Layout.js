@@ -5,11 +5,11 @@ import Navbar from "./Navbar";
 
 function Layout({ children }) {
   return (
-    <>
+    <div className="text-zinc-500">
       <Navbar />
       <section>{children}</section>
       <Footer />
-    </>
+    </div>
   );
 }
 

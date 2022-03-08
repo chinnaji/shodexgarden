@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FiShoppingCart } from "react-icons/fi";
 
 import Image from "next/image";
@@ -6,6 +6,9 @@ import Modal from "../components/Modal";
 import Cart from "./Cart";
 
 function TicketsListing({ ticketItems }) {
+  const [total, setTotal] = useState(0);
+  let subTotal = 0;
+
   const [isModal, setIsModal] = useState(false);
 
   const [cart, setCart] = useState([]);
@@ -21,8 +24,14 @@ function TicketsListing({ ticketItems }) {
       : //   if it dosent, just push it
         setCart([...cart, item]);
   };
-  //   console.log(cart[0].image.src.slice(20));
-
+  cart.map((cartItem) => {
+    subTotal += cartItem.quantity * cartItem.price;
+  });
+  // get cart total
+  useEffect(() => {
+    setTotal(subTotal);
+  }, [subTotal]);
+  // console.log(subTotal);
   return (
     <>
       <section className="max-w-[1400px] mx-auto my-5 mb-40  px-3 pt-10">
@@ -85,7 +94,7 @@ function TicketsListing({ ticketItems }) {
       </section>
 
       <Modal isModal={isModal} setIsModal={setIsModal}>
-        <Cart cart={cart} setCart={setCart} />
+        <Cart cart={cart} setCart={setCart} total={total} />
       </Modal>
     </>
   );
