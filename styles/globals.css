@@ -9,8 +9,8 @@ body,
   width: 100%;
   padding: 0;
   margin: 0;
-  /* background-color: #f9fffb; */
-  background-color: #f2ffef;
+  background-color: #fafafa;
+  /* background-color: #f2ffef; */
   /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; */
 }
@@ -28,13 +28,12 @@ a {
   font-family: "Poppins", sans-serif;
 }
 
-.bitter,
-h1,
+/* .bitter,
 h2,
 h3,
 h5 {
   font-family: "Source Serif Pro", serif;
-}
+} */
 
 .modal__inner::-webkit-scrollbar {
   width: 0px;

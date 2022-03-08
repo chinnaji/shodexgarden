@@ -32,7 +32,7 @@ function Navbar() {
 
   return (
     <header className="w-full text-zinc-600 sticky top-0 bg-white z-50">
-      <nav className=" max-w-[1400px] mx-auto flex items-center justify-between px-5 md:px-3">
+      <nav className=" max-w-[1200px] mx-auto flex items-center justify-between px-5 md:px-3">
         <div className="w-24 h-16 relative cursor-pointer">
           <Link href="/">
             <Image src={logo} layout="fill" alt="shodex garden logo" priority />
@@ -73,7 +73,7 @@ function Navbar() {
 
           <div className="flex items-center">
             {router.pathname === "/tickets" ? null : (
-              <button className="hover:bg-lime-600 ease-in-out duration-300 bg-lime-500  lg:px-3 px-2 py-2 rounded text-sm font-bold text-zinc-50">
+              <button className="hover:bg-amber-600 ease-in-out duration-300 bg-amber-500  lg:px-3 px-2 py-2 rounded text-sm font-bold text-zinc-50">
                 <Link href="/tickets">Buy Tickets</Link>
               </button>
             )}

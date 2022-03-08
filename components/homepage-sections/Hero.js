@@ -1,42 +1,72 @@
 import React from "react";
-import heroBg from "../../images/heroimg.png";
+import herosquare from "../../images/heroimg.png";
+import leaf from "../../images/leaf.png";
 import Image from "next/image";
 import Link from "next/link";
+import { BsArrowRightShort } from "react-icons/bs";
 
 function Hero() {
   return (
     <section
       className={`w-full h-[calc(100vh-4rem)] z-20  relative text-zinc-50`}
     >
-      <div className="w-full h-full relative">
-        <Image
-          src={heroBg}
-          layout="fill"
-          objectFit="cover"
-          priority
-          loading="eager"
-          alt="hero background image"
-        />
-
-        <div className="absolute inset-0 bg-[#00000080] ">
-          <div className="max-w-[1400px] mx-auto h-full px-4 flex items-center ">
-            <div className="lg:max-w-screen-md w-fll lg:text-left text-center">
-              <h1 className="text-5xl font-black my-4">
-                If You Love Fun, You’ll Love Shodex Garden{" "}
-              </h1>
-              {/* <h1 className="text-5xl font-semibold  my-4">
-                Come Have fun with friends & family
-              </h1> */}
-              <p>
-                There is nothing better than having fun with the ones you love
-                and cherish.
-              </p>
-              <button className="hover:bg-lime-600 ease-in-out duration-300 bg-lime-500 py-3  mt-6 px-6  rounded lg:text-sm font-semibold text-zinc-50">
-                <Link href="/about">About Us</Link>
-              </button>
+      <div className="max-w-[1200px] mx-auto  h-full flex flex-wrap px-5">
+        <div className="w-full lg:w-1/2 flex justify-center items-center">
+          <div>
+            <h1 className=" text-center md:text-left font-bold lg:font-black text-zinc-900 text-4xl lg:text-5xl max-w-xl lg:mt-0 mt-24">
+              If You Love <span className="text-lime-500">Fun</span>, You’ll
+              Love Shodex Garden
+            </h1>
+            <div>
+              <Link href="/">
+                <button className="mx-auto md:mx-0 flex px-10 py-3 text-base my-6 md:my-12 bg-amber-500 hover:bg-amber-600 cursor-pointer rounded transition duration-150 ease-out hover:ease-in">
+                  <span className="mr-2 font-semibold">About Us</span>
+                  <span>
+                    <BsArrowRightShort className="text-2xl" />
+                  </span>
+                </button>
+              </Link>
             </div>
           </div>
         </div>
+        <div className="w-full lg:w-1/2 flex md:justify:end justify-center items-center ">
+          <div className="w-fit h-fit p-2 rounded-lg relative ">
+            <div className="md:w-[420px] w-80 md:h-96 h-72 relative  rounded-lg ">
+              <Image
+                src={herosquare}
+                layout="fill"
+                objectFit="cover"
+                priority
+                loading="eager"
+                alt="hero background image"
+                className="rounded-lg"
+                placeholder="blur"
+              />
+            </div>
+
+            {/* <div className="w-16 h-32 absolute left-16  top-[-80px]  rounded-t-full rounded-b-none hidden md:block">
+              <Image
+                src={heroImg1}
+                layout="responsive"
+                objectFit="cover"
+                alt="hero background image"
+                className="rounded-full"
+                // placeholder="blur"
+              />
+            </div> */}
+          </div>
+        </div>
+      </div>
+
+      <div className="w-32 absolute left-0  bottom-0  rounded-lg hidden md:block">
+        <Image
+          src={leaf}
+          layout="responsive"
+          objectFit="cover"
+          alt="hero background image"
+          className="rounded-lg"
+          // placeholder="blur"
+        />
       </div>
     </section>
   );

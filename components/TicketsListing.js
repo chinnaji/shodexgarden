@@ -4,8 +4,10 @@ import { FiShoppingCart } from "react-icons/fi";
 import Image from "next/image";
 import Modal from "../components/Modal";
 import Cart from "./Cart";
+import Checkout from "./Checkout";
 
 function TicketsListing({ ticketItems }) {
+  const [isCart, setIsCart] = useState(true);
   const [total, setTotal] = useState(0);
   let subTotal = 0;
 
@@ -34,11 +36,11 @@ function TicketsListing({ ticketItems }) {
   // console.log(subTotal);
   return (
     <>
-      <section className="max-w-[1400px] mx-auto my-5 mb-40  px-3 pt-10">
+      <section className="max-w-[1200px] mx-auto my-5 mb-40  px-3 pt-10">
         <h2 className="text-lime-500 text-center font-semibold text-3xl mb-8">
           Book a Ticket, Come Enjoy Yourself!{" "}
         </h2>
-        <div className="w-fit bg-lime-500 rounded-xl flex items-center px-3 text-white py-2 flex-row ml-4">
+        <div className="w-fit bg-amber-500 rounded-xl flex items-center px-3 text-white py-2 flex-row ml-4">
           <FiShoppingCart className="mx-2" />{" "}
           <span className="mr-1 font-semibold text-sm">Cart</span>
           <span className="text-xs mx-2 w-5 h-5 flex items-center justify-center text-grey-500 bg-white rounded-full">
@@ -85,7 +87,7 @@ function TicketsListing({ ticketItems }) {
           <div className="w-100 text-center">
             <button
               onClick={() => setIsModal(true)}
-              className="w-full md:w-fit hover:bg-lime-600 bg-lime-500 ease-in-out duration-300 text-zinc-50  py-4 px-24 mx-auto mt-5 mb-32 rounded lg:text-sm font-bold "
+              className="w-full md:w-fit hover:bg-amber-600 bg-amber-500 ease-in-out duration-300 text-zinc-50  py-4 px-24 mx-auto mt-5 mb-32 rounded lg:text-sm font-bold "
             >
               View Cart
             </button>
@@ -94,7 +96,11 @@ function TicketsListing({ ticketItems }) {
       </section>
 
       <Modal isModal={isModal} setIsModal={setIsModal}>
-        <Cart cart={cart} setCart={setCart} total={total} />
+        {isCart ? (
+          <Cart cart={cart} setCart={setCart} total={total} />
+        ) : (
+          <Checkout />
+        )}
       </Modal>
     </>
   );

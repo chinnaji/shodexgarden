@@ -78,7 +78,8 @@ function Cart({ cart, setCart, total }) {
                     }
                     layout="fill"
                     objectFit="cover"
-                    alt={`shodex garden ${cartItem.title}`}
+                    alt={`shodex garden ${cartItem.title} ticket`}
+                    placeholder="blur"
                   />
                 </div>
 
