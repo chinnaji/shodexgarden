@@ -40,7 +40,7 @@ function ImageGallery() {
       </div>
 
       <div className="text-center my-5">
-        <button className="text-xl flex items-center justify-center mx-auto hover:bg-lime-600 ease-in-out duration-300 bg-lime-500 py-3  mt-6 px-14  rounded lg:text-sm font-bold text-zinc-50">
+        <button className="flex items-center justify-center mx-auto hover:bg-lime-600 ease-in-out duration-300 bg-lime-500 py-3  mt-6 px-14  rounded lg:text-base text-sm font-bold text-zinc-50">
           <CgInstagram className="mr-2 " />{" "}
           <a href="http://www.insstagram.com/shodexgarden">Instagram</a>
         </button>

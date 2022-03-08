@@ -55,11 +55,11 @@ function ServicesSection() {
                 </h3>
                 <p className="  text-base">{service.text}</p>
 
-                <div className="absolute right-[-20px] top-20  w-14 hover:cursor-pointer h-14 bg-lime-500 flex items-center justify-center text-white rounded-full text-lg mx-auto mt-3">
+                {/* <div className="absolute right-[-20px] top-20  w-14 hover:cursor-pointer h-14 bg-lime-500 flex items-center justify-center text-white rounded-full text-lg mx-auto mt-3">
                   <Link href={`/services/${service.title.toLocaleLowerCase()}`}>
                     <BsArrowRightShort className="text-2xl" />
                   </Link>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

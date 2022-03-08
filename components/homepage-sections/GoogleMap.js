@@ -11,7 +11,7 @@ function GoogleMap() {
       <div className="text-center my-5">
         {" "}
         <a href="https://maps.google.com/maps/dir//Shodex+Garden+251%2F253+Ikorodu+Rd+Ilupeju+101233+Lagos/@6.5586142,3.366388,14z/data=!4m5!4m4!1m0!1m2!1m1!1s0x103b8d8ef89ec639:0x2b52a2d27d27c2fd">
-          <button className="text-xl flex items-center justify-center mx-auto hover:bg-lime-600 ease-in-out duration-300 bg-lime-500 py-3  mt-6 px-14  rounded lg:text-sm font-bold text-zinc-50">
+          <button className="lg:text-base text-sm flex items-center justify-center mx-auto hover:bg-lime-600 ease-in-out duration-300 bg-lime-500 py-3  mt-6 px-14  rounded  font-bold text-zinc-50">
             <FaDirections className="mr-2 " /> Get Directions
           </button>
         </a>

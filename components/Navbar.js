@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import logo from "../images/logo.svg";
 import Image from "next/image";
-import { HiOutlineMenu } from "react-icons/hi";
+import { FiMenu } from "react-icons/fi";
 import { MdOutlineClose } from "react-icons/md";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -33,7 +33,7 @@ function Navbar() {
   return (
     <header className="w-full text-grey-500 sticky top-0 bg-white z-50">
       <nav className=" max-w-[1400px] mx-auto flex items-center justify-between px-5 md:px-3">
-        <div className="w-24 h-16 relative">
+        <div className="w-24 h-16 relative cursor-pointer">
           <Link href="/">
             <Image src={logo} layout="fill" alt="shodex garden logo" priority />
           </Link>
@@ -78,9 +78,9 @@ function Navbar() {
               </button>
             )}
 
-            <HiOutlineMenu
+            <FiMenu
               onClick={() => setIsSidebar(true)}
-              className="ml-4 mr-1 lg:hidden cursor-pointer text-xl"
+              className="ml-4 mr-1 lg:hidden cursor-pointer text-2xl"
             />
           </div>
         </div>

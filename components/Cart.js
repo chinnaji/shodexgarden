@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { BiX } from "react-icons/bi";
 import { BsPlus } from "react-icons/bs";
@@ -8,7 +8,34 @@ import ticketImage2 from "../images/tickets (2).jpg";
 import ticketImage3 from "../images/tickets (3).jpg";
 import ticketImage4 from "../images/tickets (4).jpg";
 
-function Cart({ cart, setCart }) {
+function Cart({ cart, setCart, addToCart }) {
+  const handleQuantityChange = (cartItemId, type) => {
+    // get the item in the cart
+    const item = cart.find(
+      (singleCartItem) => singleCartItem.id === cartItemId
+    );
+
+    // increment or decrement the itmes quantity
+    type === "increment"
+      ? (item.quantity = item.quantity + 1)
+      : (item.quantity = item.quantity - 1);
+
+    // if the quantity is 0 change it to one
+    if (item.quantity == 0) {
+      item.quantity = 1;
+      alert("ticket quantity can't be less than one");
+    }
+
+    const updatedCart = cart.map((singleCartItem) => {
+      if (item.id === singleCartItem.id) {
+        return item;
+      }
+
+      return singleCartItem;
+    });
+    setCart(updatedCart);
+  };
+
   const removeSingleItemFromCart = (itemId) => {
     // get item from the cart
     const newCartItems = cart.filter((cartItems) => cartItems.id !== itemId);
@@ -20,7 +47,7 @@ function Cart({ cart, setCart }) {
       <h2 className="text-lime-500 text-center font-semibold text-2xl mb-3">
         Cart Items
       </h2>
-      {cart.map((cartItem, index) => (
+      {cart.sort().map((cartItem, index) => (
         <div
           className="md:bg-white bg-lime-50 py-5 px-6 rounded-lg h-fit overflow-hidden my-5 md:my-10 md-my-0 w-full flex md:flex-row flex-col md:items-center"
           key={cartItem.id}
@@ -73,26 +100,41 @@ function Cart({ cart, setCart }) {
 
           <hr className="my-5 md:none" />
           {/* increment - decrement items */}
-          <div className="md:hidden flex justify-between ">
-            <span className=" text-sm text-red-400 cursor-pointer mr-4 flex items center">
+          <div className="md:hidden flex justify-between items-center ">
+            <span
+              className=" text-sm text-red-400 cursor-pointer mr-4 flex items center"
+              onClick={() => removeSingleItemFromCart(cartItem.id)}
+            >
               <BiX className="text-2xl" /> <span>Remove</span>
             </span>
 
             <span className="flex text-md  w-fit md:mt-0  px-2 py-1 justify-between items-center border rounded-md  border-lime-500">
-              <BsPlus className="cursor-pointer" />
+              <BsPlus
+                className="cursor-pointer"
+                onClick={() => handleQuantityChange(cartItem.id, "increment")}
+              />
               <span className="mx-5 font-semibold text-lime-500  ">
                 {cartItem.quantity}
               </span>
-              <CgMathMinus className="cursor-pointer" />
+              <CgMathMinus
+                className="cursor-pointer"
+                onClick={() => handleQuantityChange(cartItem.id, "decrement")}
+              />
             </span>
           </div>
 
           <div className="hidden md:flex text-md md:ml-auto md:w-fit w-1/4 mt-3 md:mt-0 mx-auto px-2 py-1 justify-between items-center border rounded-md  border-lime-500">
-            <BsPlus className="cursor-pointer" />
+            <BsPlus
+              className="cursor-pointer"
+              onClick={() => handleQuantityChange(cartItem.id, "increment")}
+            />
             <span className="mx-5 font-semibold text-lime-500  ">
               {cartItem.quantity}
             </span>
-            <CgMathMinus className="cursor-pointer" />
+            <CgMathMinus
+              className="cursor-pointer"
+              onClick={() => handleQuantityChange(cartItem.id, "decrement")}
+            />
           </div>
 
           {/* <hr className="my-5" /> */}
@@ -104,15 +146,15 @@ function Cart({ cart, setCart }) {
         <span>
           <input type="text" placeholder="Coupon Code" />
         </span>
-        <span>
-          Total ={" "}
-          {cart.map((cartItem, index) => cartItem.price * cartItem.quantity)}
+        <span className="font-semibold">Total =</span>
+        <span className="font-medium">
+          {cart.map((cartItem, index) => cartItem.price * cartItem.quantity)}{" "}
         </span>
       </div>
 
       <div className="w-100 text-center">
         <button
-          //   onClick={() => setIsModal(true)}
+          onClick={() => console.log(cart)}
           className="w-full hover:bg-lime-600 bg-lime-500 ease-in-out duration-300 text-zinc-50  py-4 mx-auto my-5  rounded lg:text-sm font-bold "
         >
           Proceed To Checkout
