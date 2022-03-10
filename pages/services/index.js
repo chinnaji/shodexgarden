@@ -50,7 +50,7 @@ function services() {
                 {service.title}
               </h2>
               <p className="mt-3 mb-6 text-base">{service.description}</p>
-              <Link href={service.link}>
+              <Link href={service.link} passHref>
                 <button className="rounded-full border-2 bg-transparent hover:bg-lime-500 transition-all ease-in-out delay-75 hover:text-white border-lime-500 px-8 py-1">
                   More
                 </button>

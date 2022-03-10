@@ -73,7 +73,7 @@ function events() {
         ))}
 
         <p className="my-10">
-          <Link href="/services/gardening">
+          <Link href="/services/gardening" passHref>
             <span className="cursor-pointer">
               -- Our Services - <span className="text-lime-500">Gardening</span>
             </span>
