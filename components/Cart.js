@@ -46,19 +46,19 @@ function Cart({ cart, setCart, total }) {
   return (
     <>
       <h2 className="text-lime-500 text-center font-semibold text-2xl mb-3">
-        Cart Items
+        Cart Item(s)
       </h2>
       {cart.length > 0 ? (
         <>
           {cart.sort().map((cartItem, index) => (
             <div
-              className="md:bg-white bg-zinc-100 py-5 px-6 rounded-lg h-fit overflow-hidden my-5 md:my-10 md-my-0 w-full flex md:flex-row flex-col md:items-center"
+              className=" bg-zinc-50 py-5 px-6 rounded-lg h-fit overflow-hidden my-5  md-my-0 w-full flex md:flex-row justify-between flex-col md:items-center"
               key={cartItem.id}
             >
               {/* remove item */}
               <span className="hidden md:block text-sm text-red-400 cursor-pointer mr-4">
                 <BiX
-                  className="text-2xl"
+                  className="text-xl"
                   onClick={() => removeSingleItemFromCart(cartItem.id)}
                 />{" "}
               </span>
@@ -85,13 +85,13 @@ function Cart({ cart, setCart, total }) {
 
                 {/* item title */}
                 <div className="flex flex-col">
-                  <h4 className="text-grey-500  font-semibold text-base  mb-2 mx-2">
+                  <h4 className="text-grey-500 text-sm  font-medium   mb-2 mx-2">
                     {cartItem.title}
                   </h4>
 
                   {/* item price */}
                   <h4 className="text-lime-500  font-semibold text-base mx-2">
-                    #{Intl.NumberFormat("en-US").format(cartItem.price)}{" "}
+                    &#8358;{Intl.NumberFormat("en-US").format(cartItem.price)}{" "}
                     <span className="text-grey-500 text-sm">
                       {"  x " + cartItem.quantity}
                     </span>
@@ -111,7 +111,7 @@ function Cart({ cart, setCart, total }) {
 
                 <span className="flex text-md  w-fit md:mt-0  px-2 py-1 justify-between items-center border rounded-md  border-lime-500">
                   <BsPlus
-                    className="cursor-pointer"
+                    className="cursor-pointer text-lime-500"
                     onClick={() =>
                       handleQuantityChange(cartItem.id, "increment")
                     }
@@ -120,7 +120,7 @@ function Cart({ cart, setCart, total }) {
                     {cartItem.quantity}
                   </span>
                   <CgMathMinus
-                    className="cursor-pointer"
+                    className="cursor-pointer text-lime-500"
                     onClick={() =>
                       handleQuantityChange(cartItem.id, "decrement")
                     }
@@ -130,31 +130,34 @@ function Cart({ cart, setCart, total }) {
 
               <div className="hidden md:flex text-md md:ml-auto md:w-fit w-1/4 mt-3 md:mt-0 mx-auto px-2 py-1 justify-between items-center border rounded-md  border-lime-500">
                 <BsPlus
-                  className="cursor-pointer"
+                  className="cursor-pointer text-lime-500"
                   onClick={() => handleQuantityChange(cartItem.id, "increment")}
                 />
-                <span className="mx-5 font-semibold text-lime-500  ">
+                <span className="mx-5 font-semibold text-zinc-800  ">
                   {cartItem.quantity}
                 </span>
                 <CgMathMinus
-                  className="cursor-pointer"
+                  className="cursor-pointer text-lime-500"
                   onClick={() => handleQuantityChange(cartItem.id, "decrement")}
                 />
               </div>
             </div>
           ))}
-          <div className="flex flex-wrap justify-between items-center w-full  px-2 pt-5 border-t-2 border-zinc-300">
-            <span>
+          <div className="flex flex-wrap justify-between items-center w-full  px-2 pt-5 border-t-2 border-zinc-200">
+            <span className="flex mb-5 md:mb-0">
               <input
                 type="text"
-                placeholder="Coupon Code"
-                className="bg-transparent border-2 px-2 py-1 border-zinc-500 rounded-md focus:outline-none text-zinc-400"
+                placeholder="Enter Voucher"
+                className="w-full bg-transparent border px-2 py-1 border-zinc-400 rounded-tl-md rounded-bl-md focus:outline-none text-zinc-400"
               />
+              <button className=" text-sm rounded-tr-md rounded-br-md px-2 py-1 bg-lime-500 hover:bg-lime-600 text-zinc-50">
+                APPLY
+              </button>
             </span>
-            <div>
-              <span className="font-semibold">Total =</span>{" "}
-              <span className="font-medium text-lime-500">
-                #{Intl.NumberFormat("en-US").format(total)}
+            <div className="text-xl">
+              <span className="font-medium text-zinc-800">Total =</span>{" "}
+              <span className="font-semibold text-lime-500">
+                &#8358;{Intl.NumberFormat("en-US").format(total)}
               </span>
             </div>
           </div>
@@ -162,7 +165,7 @@ function Cart({ cart, setCart, total }) {
           <div className="w-100 text-center mt-5">
             <button
               onClick={() => console.log(cart)}
-              className="w-full hover:bg-lime-600 bg-lime-500 ease-in-out duration-300 text-zinc-50  py-4 mx-auto my-5  rounded lg:text-sm font-bold "
+              className=" w-full hover:bg-lime-600 bg-lime-500 ease-in-out duration-300 text-zinc-50  py-4 mx-auto my-5  rounded lg:text-sm font-bold "
             >
               Proceed To Checkout
             </button>

@@ -71,7 +71,7 @@ function Navbar() {
             </ul>
           </div>
 
-          <div className="flex items-center">
+          <div className="flex items-center ml-3">
             {router.pathname === "/tickets" ? null : (
               <button className="hover:bg-amber-600 ease-in-out duration-300 bg-amber-500  lg:px-3 px-2 py-2 rounded text-sm font-bold text-zinc-50">
                 <Link href="/tickets">Buy Tickets</Link>

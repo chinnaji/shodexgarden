@@ -23,7 +23,7 @@ function ImageGallery() {
       <div className="flex flex-wrap">
         {images.map((image, index) => (
           <div
-            className="p-2 w-full sm:w-1/2 md:w-1/2 xl:w-1/4  h-52"
+            className={`p-2 w-full sm:w-1/2 md:w-1/2 xl:w-1/4  h-52`}
             key={index}
           >
             <div className="w-full h-full   relative mx-auto ">

@@ -8,7 +8,7 @@ import { BsArrowRightShort } from "react-icons/bs";
 function Hero() {
   return (
     <section
-      className={`w-full h-[calc(100vh-4rem)] z-20  relative text-zinc-50`}
+      className={`w-full h-[calc(100vh-4rem)] z-20  relative text-zinc-50 `}
     >
       <div className="max-w-[1200px] mx-auto  h-full flex flex-wrap px-5">
         <div className="w-full lg:w-1/2 flex justify-center items-center">
@@ -17,13 +17,13 @@ function Hero() {
               If You Love <span className="text-lime-500">Fun</span>, You’ll
               Love Shodex Garden
             </h1>
-            <p className="text-zinc-800 text-sm mt-5">
+            <p className="text-zinc-800 text-sm mt-5 text-center md:text-left">
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni
               blanditiis ipsa ducimus laborum dolor? Totam nostrum fugit, culpa
             </p>
             <div>
               <Link href="/" passHref>
-                <button className="mx-auto md:mx-0 flex px-6 text-sm py-3  my-6 md:my-12 bg-lime-500 hover:bg-lime-600 cursor-pointer rounded transition duration-100 ease-out hover:ease-in">
+                <button className=" mx-auto md:mx-0 flex px-6 text-sm py-3  my-6 md:my-12 bg-lime-500 hover:bg-lime-600 cursor-pointer rounded transition duration-100 ease-out hover:ease-in">
                   <span className="mr-2 font-semibold">About Us</span>
                   {/* <span>
                     <BsArrowRightShort className="text-2xl" />
@@ -35,7 +35,7 @@ function Hero() {
         </div>
         <div className="w-full lg:w-1/2 flex md:justify:end justify-center items-center ">
           <div className="w-fit h-fit p-2 rounded-lg relative ">
-            <div className="p-2 shadow-md mt-10 md:mt-0 md:w-[420px] w-96 md:h-96 h-72 relative md:rounded-tl-[150px] md:rounded-tr-[50px] md:rounded-br-[150px] md:rounded-bl-[40px]">
+            <div className="p-2  mt-10 md:mt-0 md:w-[420px] w-80 md:h-96 h-72 relative md:rounded-tl-[150px] md:rounded-tr-[50px] md:rounded-br-[150px] md:rounded-bl-[40px]">
               <Image
                 src={herosquare}
                 layout="fill"
@@ -43,7 +43,7 @@ function Hero() {
                 priority
                 loading="eager"
                 alt="hero background image"
-                className=" md:rounded-tl-[150px] md:rounded-tr-[50px] md:rounded-br-[150px] md:rounded-bl-[40px] rounded-tl-[100px] rounded-tr-[50px] rounded-br-[100px] rounded-bl-[40px]"
+                className="shadow-md md:rounded-tl-[150px] md:rounded-tr-[50px] md:rounded-br-[150px] md:rounded-bl-[40px] rounded-tl-[100px] rounded-tr-[50px] rounded-br-[100px] rounded-bl-[40px]"
                 placeholder="blur"
               />
             </div>

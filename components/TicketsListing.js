@@ -7,6 +7,7 @@ import Cart from "./Cart";
 import Checkout from "./Checkout";
 
 function TicketsListing({ ticketItems }) {
+  const [isAddedToCart, setIsAddedToCart] = useState(false);
   const [isCart, setIsCart] = useState(true);
   const [total, setTotal] = useState(0);
   let subTotal = 0;
@@ -16,6 +17,7 @@ function TicketsListing({ ticketItems }) {
   const [cart, setCart] = useState([]);
 
   const addToCart = (itemId) => {
+    setIsAddedToCart(true);
     //   get the item from the item list
     const item = ticketItems.find((ticketItems) => ticketItems.id === itemId);
 
@@ -54,7 +56,7 @@ function TicketsListing({ ticketItems }) {
               className="px-6 rounded-lg h-fit overflow-hidden my-10 md-my-0 w-full sm:w-1/2 md:w-1/2 xl:w-1/4 "
               key={ticketItem.title}
             >
-              <div className="bg-white px-2 py-3 rounded-lg">
+              <div className=" px-2 py-3 rounded-lg">
                 <div className="w-full h-48   relative mx-auto ">
                   <Image
                     className="rounded-lg hover:grow hover:shadow-lg"
@@ -70,15 +72,24 @@ function TicketsListing({ ticketItems }) {
                   {ticketItem.title}
                 </h4>
                 <h4 className="text-lime-500  font-semibold text-2xl mx-2">
-                  #{Intl.NumberFormat("en-US").format(ticketItem.price)}
+                &#8358;
+{Intl.NumberFormat("en-US").format(ticketItem.price)}
                 </h4>
 
-                <button
-                  onClick={() => addToCart(ticketItem.id)}
-                  className=" focus:outline-none focus:ring focus:ring-lime-500 focus:border-0 w-full hover:bg-lime-600 ease-in-out duration-300 bg-transparent text-lime-500 hover:text-zinc-50 border-2 border-lime-500 py-3  mt-8   rounded lg:text-sm font-bold "
-                >
-                  Add To Cart
-                </button>
+                {cart.some((cartItem) => cartItem.id === ticketItem.id) ? (
+                  <button
+                    className=" focus:outline-none   w-full  ease-in-out duration-300  text-lime-500  border-2 border-lime-500 py-3  mt-5   rounded lg:text-sm font-bold "
+                  >
+                    Added To Cart
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => addToCart(ticketItem.id)}
+                    className=" focus:outline-none  border-0 w-full  ease-in-out duration-300  text-zinc-50 hover:bg-lime-600 bg-lime-500 py-3  mt-8   rounded lg:text-sm font-bold "
+                  >
+                    Add To Cart
+                  </button>
+                )}
               </div>
             </div>
           ))}
@@ -87,7 +98,7 @@ function TicketsListing({ ticketItems }) {
           <div className="w-100 text-center">
             <button
               onClick={() => setIsModal(true)}
-              className="w-full md:w-fit hover:bg-amber-600 bg-amber-500 ease-in-out duration-300 text-zinc-50  py-4 px-24 mx-auto mt-5 mb-32 rounded lg:text-sm font-bold "
+              className="w-full md:w-fit hover:bg-lime-600 bg-lime-500 ease-in-out duration-300 text-zinc-50  py-4 px-24 mx-auto mt-5 mb-32 rounded lg:text-sm font-bold "
             >
               View Cart
             </button>
