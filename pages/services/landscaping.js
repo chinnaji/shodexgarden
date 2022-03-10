@@ -8,7 +8,7 @@ import ig5 from "../../images/ig/img (5).jpg";
 import ig6 from "../../images/ig/img (6).jpg";
 import ig7 from "../../images/ig/img (7).jpg";
 import ig8 from "../../images/ig/img (8).jpg";
-import GetQuote from "../../components/getQuote";
+import GetQuote from "../../components/GetQuote";
 
 function landscaping() {
   const images = [ig1, ig2, ig3, ig4, ig5, ig6, ig7, ig8];

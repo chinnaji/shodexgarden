@@ -5,7 +5,7 @@ import eventsImg from "../../images/events.jpg";
 import lagosImg from "../../images/lagos.jpg";
 import Image from "next/image";
 import Link from "next/link";
-import GetQuote from "../../components/getQuote";
+import GetQuote from "../../components/GetQuote";
 function services() {
   const services = [
     {

@@ -8,7 +8,7 @@ import ig3 from "../../images/ig/img (5).jpg";
 import ig2 from "../../images/ig/img (6).jpg";
 import ig7 from "../../images/ig/img (7).jpg";
 import ig8 from "../../images/ig/img (8).jpg";
-import GetQuote from "../../components/getQuote";
+import GetQuote from "../../components/GetQuote";
 import Link from "next/link";
 
 function events() {
