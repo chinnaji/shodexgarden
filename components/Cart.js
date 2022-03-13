@@ -200,7 +200,7 @@ function Cart({ cart, setCart, total }) {
       )}
     </>
   ) : (
-    <Checkout />
+    <Checkout setIsCart={setIsCart} />
   );
 }
 

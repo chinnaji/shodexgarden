@@ -1,8 +1,13 @@
 import React from "react";
+import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 
-function Checkout() {
+function Checkout({ setIsCart }) {
   return (
-    <div>
+    <div className="relative">
+      <BsFillArrowLeftCircleFill
+        onClick={() => setIsCart(true)}
+        className="absolute left-0 -top-7 text-zinc-700 cursor-pointer text-2xl"
+      />
       <h2 className="text-lime-500 text-center font-semibold text-2xl mb-4">
         CHECKOUT
       </h2>
@@ -46,7 +51,7 @@ function Checkout() {
           />
           <label
             className="form-check-label inline-block text-lime-500"
-            for="flexCheckDefault"
+            htmlFor="flexCheckDefault"
           >
             Sign Up To Our Newsletter
           </label>
