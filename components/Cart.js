@@ -8,8 +8,11 @@ import ticketImage2 from "../images/tickets (2).jpg";
 import ticketImage3 from "../images/tickets (3).jpg";
 import ticketImage4 from "../images/tickets (4).jpg";
 import emptyCart from "../images/empty-cart.png";
+import Checkout from "./Checkout";
 
 function Cart({ cart, setCart, total }) {
+  const [isCart, setIsCart] = useState(true);
+
   const handleQuantityChange = (cartItemId, type) => {
     // get the item in the cart
     const item = cart.find(
@@ -43,7 +46,7 @@ function Cart({ cart, setCart, total }) {
     setCart(newCartItems);
     // console.log(cart);
   };
-  return (
+  return isCart ? (
     <>
       <h2 className="text-lime-500 text-center font-semibold text-2xl mb-3">
         Cart Item(s)
@@ -85,14 +88,14 @@ function Cart({ cart, setCart, total }) {
 
                 {/* item title */}
                 <div className="flex flex-col">
-                  <h4 className="text-grey-500 text-sm  font-medium   mb-2 mx-2">
+                  <h4 className="text-zinc-600 text-sm  font-semibold   mb-2 mx-2">
                     {cartItem.title}
                   </h4>
 
                   {/* item price */}
                   <h4 className="text-lime-500  font-semibold text-base mx-2">
                     &#8358;{Intl.NumberFormat("en-US").format(cartItem.price)}{" "}
-                    <span className="text-grey-500 text-sm">
+                    <span className="text-zinc-500 text-sm">
                       {"  x " + cartItem.quantity}
                     </span>
                   </h4>
@@ -109,41 +112,51 @@ function Cart({ cart, setCart, total }) {
                   <BiX className="text-2xl" /> <span>Remove</span>
                 </span>
 
-                <span className="flex text-md  w-fit md:mt-0  px-2 py-1 justify-between items-center border rounded-md  border-lime-500">
-                  <BsPlus
-                    className="cursor-pointer text-lime-500"
+                <span className="flex text-md  w-fit md:mt-0  px-2 py-1 justify-between items-center border rounded-md  ">
+                  <span
                     onClick={() =>
                       handleQuantityChange(cartItem.id, "increment")
                     }
-                  />
-                  <span className="mx-5 font-semibold text-lime-500  ">
+                    className="bg-lime-500 p-1.5 rounded hover:bg-lime-600 cursor-pointer text-white"
+                  >
+                    <BsPlus />
+                  </span>
+                  <span className="mx-5 font-semibold text-zinc-500  ">
                     {cartItem.quantity}
                   </span>
-                  <CgMathMinus
-                    className="cursor-pointer text-lime-500"
+
+                  <span
                     onClick={() =>
                       handleQuantityChange(cartItem.id, "decrement")
                     }
-                  />
+                    className="bg-lime-500 p-1.5 rounded hover:bg-lime-600 cursor-pointer text-white"
+                  >
+                    <CgMathMinus />
+                  </span>
                 </span>
               </div>
 
-              <div className="hidden md:flex text-md md:ml-auto md:w-fit w-1/4 mt-3 md:mt-0 mx-auto px-2 py-1 justify-between items-center border rounded-md  border-lime-500">
-                <BsPlus
-                  className="cursor-pointer text-lime-500"
+              <div className="hidden md:flex text-md md:ml-auto md:w-fit w-1/4 mt-3 md:mt-0 mx-auto px-2 py-1 justify-between items-center border rounded-md  ">
+                <span
                   onClick={() => handleQuantityChange(cartItem.id, "increment")}
-                />
+                  className="bg-lime-500 p-1.5 rounded hover:bg-lime-600 cursor-pointer text-white"
+                >
+                  <BsPlus />
+                </span>
+
                 <span className="mx-5 font-semibold text-zinc-800  ">
                   {cartItem.quantity}
                 </span>
-                <CgMathMinus
-                  className="cursor-pointer text-lime-500"
+                <span
                   onClick={() => handleQuantityChange(cartItem.id, "decrement")}
-                />
+                  className="bg-lime-500 p-1.5 rounded hover:bg-lime-600 cursor-pointer text-white"
+                >
+                  <CgMathMinus />
+                </span>
               </div>
             </div>
           ))}
-          <div className="flex flex-wrap justify-between items-center w-full  px-2 pt-5 border-t-2 border-zinc-200">
+          <div className="flex flex-wrap justify-between items-center w-full  px-2 pt-5 border-t-2 border-zinc-100">
             <span className="flex mb-5 md:mb-0">
               <input
                 type="text"
@@ -164,7 +177,7 @@ function Cart({ cart, setCart, total }) {
 
           <div className="w-100 text-center mt-5">
             <button
-              onClick={() => console.log(cart)}
+              onClick={() => setIsCart(false)}
               className=" w-full hover:bg-lime-600 bg-lime-500 ease-in-out duration-300 text-zinc-50  py-4 mx-auto my-5  rounded lg:text-sm font-bold "
             >
               Proceed To Checkout
@@ -186,6 +199,8 @@ function Cart({ cart, setCart, total }) {
         </h2>
       )}
     </>
+  ) : (
+    <Checkout />
   );
 }
 

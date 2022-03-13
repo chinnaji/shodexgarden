@@ -8,7 +8,6 @@ import Checkout from "./Checkout";
 
 function TicketsListing({ ticketItems }) {
   const [isAddedToCart, setIsAddedToCart] = useState(false);
-  const [isCart, setIsCart] = useState(true);
   const [total, setTotal] = useState(0);
   let subTotal = 0;
 
@@ -53,13 +52,13 @@ function TicketsListing({ ticketItems }) {
         <div className="flex w-full flex-wrap ">
           {ticketItems.map((ticketItem, index) => (
             <div
-              className="px-6 rounded-lg h-fit overflow-hidden my-10 md-my-0 w-full sm:w-1/2 md:w-1/2 xl:w-1/4 "
+              className="px-6 rounded-md h-fit overflow-hidden my-10 md-my-0 w-full sm:w-1/2 md:w-1/2 xl:w-1/4 "
               key={ticketItem.title}
             >
-              <div className=" px-2 py-3 rounded-lg">
+              <div className=" px-2 py-3 rounded-md bg-white">
                 <div className="w-full h-48   relative mx-auto ">
                   <Image
-                    className="rounded-lg hover:grow hover:shadow-lg"
+                    className="rounded-md hover:grow hover:shadow-lg"
                     src={ticketItem.image}
                     layout="fill"
                     objectFit="cover"
@@ -68,18 +67,16 @@ function TicketsListing({ ticketItems }) {
                   />
                 </div>
 
-                <h4 className="text-grey-500  font-semibold text-base mt-4 mb-2 mx-2">
+                <h4 className="text-zinc-700  font-semibold text-base mt-4 mb-2 mx-2">
                   {ticketItem.title}
                 </h4>
                 <h4 className="text-lime-500  font-semibold text-2xl mx-2">
-                &#8358;
-{Intl.NumberFormat("en-US").format(ticketItem.price)}
+                  &#8358;
+                  {Intl.NumberFormat("en-US").format(ticketItem.price)}
                 </h4>
 
                 {cart.some((cartItem) => cartItem.id === ticketItem.id) ? (
-                  <button
-                    className=" focus:outline-none   w-full  ease-in-out duration-300  text-lime-500  border-2 border-lime-500 py-3  mt-5   rounded lg:text-sm font-bold "
-                  >
+                  <button className=" focus:outline-none   w-full  ease-in-out duration-300  text-lime-500  border-2 border-lime-500 py-3  mt-5   rounded lg:text-sm font-bold ">
                     Added To Cart
                   </button>
                 ) : (
@@ -107,11 +104,7 @@ function TicketsListing({ ticketItems }) {
       </section>
 
       <Modal isModal={isModal} setIsModal={setIsModal}>
-        {isCart ? (
-          <Cart cart={cart} setCart={setCart} total={total} />
-        ) : (
-          <Checkout />
-        )}
+        <Cart cart={cart} setCart={setCart} total={total} />
       </Modal>
     </>
   );
