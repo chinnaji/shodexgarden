@@ -3,10 +3,6 @@ import Image from "next/image";
 import { BiX } from "react-icons/bi";
 import { BsPlus } from "react-icons/bs";
 import { CgMathMinus } from "react-icons/cg";
-import ticketImage1 from "../images/tickets (1).jpg";
-import ticketImage2 from "../images/tickets (2).jpg";
-import ticketImage3 from "../images/tickets (3).jpg";
-import ticketImage4 from "../images/tickets (4).jpg";
 import emptyCart from "../images/empty-cart.png";
 import Checkout from "./Checkout";
 
@@ -70,19 +66,10 @@ function Cart({ cart, setCart, total }) {
                 <div className="w-16 h-16 relative mr-3 ">
                   <Image
                     className="rounded-md  hover:shadow-lg"
-                    src={
-                      cartItem.image.src.slice(20, 31) === "tickets (1)"
-                        ? ticketImage1
-                        : cartItem.image.src.slice(20, 31) === "tickets (2)"
-                        ? ticketImage2
-                        : cartItem.image.src.slice(20, 31) === "tickets (3)"
-                        ? ticketImage3
-                        : ticketImage4
-                    }
+                    src={cartItem.image}
                     layout="fill"
                     objectFit="cover"
                     alt={`shodex garden ${cartItem.title} ticket`}
-                    placeholder="blur"
                   />
                 </div>
 
@@ -112,7 +99,7 @@ function Cart({ cart, setCart, total }) {
                   <BiX className="text-2xl" /> <span>Remove</span>
                 </span>
 
-                <span className="flex text-md  w-fit md:mt-0  px-2 py-1 justify-between items-center border rounded-md  ">
+                <span className="flex text-md  w-fit md:mt-0  px-2 py-1 justify-between items-center  rounded-md  ">
                   <span
                     onClick={() =>
                       handleQuantityChange(cartItem.id, "increment")
@@ -136,7 +123,7 @@ function Cart({ cart, setCart, total }) {
                 </span>
               </div>
 
-              <div className="hidden md:flex text-md md:ml-auto md:w-fit w-1/4 mt-3 md:mt-0 mx-auto px-2 py-1 justify-between items-center border rounded-md  ">
+              <div className="hidden md:flex text-md md:ml-auto md:w-fit w-1/4 mt-3 md:mt-0 mx-auto px-2 py-1 justify-between items-center  rounded-md  ">
                 <span
                   onClick={() => handleQuantityChange(cartItem.id, "increment")}
                   className="bg-lime-500 p-1.5 rounded hover:bg-lime-600 cursor-pointer text-white"
@@ -200,7 +187,7 @@ function Cart({ cart, setCart, total }) {
       )}
     </>
   ) : (
-    <Checkout setIsCart={setIsCart} />
+    <Checkout setIsCart={setIsCart} cart={cart} total={total} />
   );
 }
 

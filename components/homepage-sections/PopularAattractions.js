@@ -4,7 +4,7 @@ import Link from "next/link";
 import popularAattraction1 from "../../images/pool.svg";
 import popularAattraction2 from "../../images/arcadegame.svg";
 import popularAattraction3 from "../../images/monkey.svg";
-import {GiFlowerEmblem} from 'react-icons/gi'
+import { GiFlowerEmblem } from "react-icons/gi";
 
 function PopularAattractions() {
   const popularAattractions = [
@@ -39,21 +39,25 @@ function PopularAattractions() {
           >
             {/* <div className=""> */}
             <div className="w-64 h-52 relative mx-auto ">
-              <Image src={popularAattraction.image} layout="fill" alt="popular attractions" />
+              <Image
+                src={popularAattraction.image}
+                layout="fill"
+                alt="popular attractions"
+              />
             </div>
             <div className="text-center">
               <h3 className="font-semibold text-xl mt-6 mb-2 text-zinc-800">
                 {popularAattraction.title}
               </h3>
-              <p className="text-base text-zinc-700">{popularAattraction.text}</p>
+              <p className="text-base text-zinc-700">
+                {popularAattraction.text}
+              </p>
             </div>
             {/* </div> */}
-
           </div>
         ))}
-        
-        {/* <GiFlowerEmblem className="absolute right-10 animate-spin	 duration-700 ease-in-out	 text-3xl text-lime-600" /> */}
 
+        {/* <GiFlowerEmblem className="absolute right-10 animate-spin	 duration-700 ease-in-out	 text-3xl text-lime-600" /> */}
       </div>
     </section>
   );

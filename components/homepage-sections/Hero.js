@@ -1,5 +1,5 @@
 import React from "react";
-import herosquare from "../../images/heroimg.png";
+import herosquare from "../../images/heroimg.jpg";
 import leaf from "../../images/leaf.png";
 import Image from "next/image";
 import Link from "next/link";
