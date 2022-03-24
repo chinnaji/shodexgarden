@@ -7,9 +7,9 @@ import Payment from "./payment";
 function Checkout({ setIsCart, cart, total }) {
   const [isPayment, setIsPayment] = useState(false);
   const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [date, setDate] = useState("");
+  const [fullName, setFullName] = useState("");
+  // const [date, setDate] = useState("");
   const [isNewsletter, setIsNewsletter] = useState(true);
 
   const handleCheckout = () => {
@@ -24,15 +24,15 @@ function Checkout({ setIsCart, cart, total }) {
     email: email,
     amount: (total *= 100),
     metadata: {
-      name: name,
+      name: fullName,
       phone: phoneNumber,
     },
-    publicKey: process.env.PUBLIC_KEY,
+    publicKey: "pk_test_cd1cb9c6f56c382b19cba19de6de6270879c8976",
     text: "Pay Now",
   };
 
   return isPayment ? (
-    <Payment config={config} setIsPayment={setIsPayment} />
+    <Payment config={config} setIsPayment={setIsPayment} cart={cart} />
   ) : (
     <div className="relative">
       <BsFillArrowLeftCircleFill
@@ -50,9 +50,12 @@ function Checkout({ setIsCart, cart, total }) {
             name="fullname"
             placeholder="Full Name"
             required
-            onInput={(e) => setName(e.target.value)}
+            onInput={(e) => setFullName(e.target.value)}
           />
 
+          <label htmlFor="email" className="text-lime-500 text-sm">
+            *Email Address Your Ticket will be sent to.
+          </label>
           <input
             type="text"
             id="email"
@@ -62,9 +65,6 @@ function Checkout({ setIsCart, cart, total }) {
             required
             onInput={(e) => setEmail(e.target.value)}
           />
-          <label htmlFor="email" className="text-lime-500 text-sm">
-            *Email Address Yoour Tiket will bw sent to.
-          </label>
 
           <input
             type="text"
@@ -73,17 +73,9 @@ function Checkout({ setIsCart, cart, total }) {
             placeholder="Phone Number"
             required
             onInput={(e) => setPhoneNumber(e.target.value)}
-            minlength="11"
+            minLength="11"
           />
 
-          {/* <input
-            type="date"
-            className="block border border-grey-light w-full p-3 rounded mb-4  focus:outline-none"
-            name="date"
-            placeholder="Phone Number"
-            required
-            onChange={(e) => setDate(e.target.value)}
-          /> */}
           <div className="form-check mt-5 flex items-center">
             <input
               className="form-check-input  h-5 w-5 border border-gray-300 rounded-sm bg-white text-lime-500 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"

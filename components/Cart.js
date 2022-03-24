@@ -42,6 +42,7 @@ function Cart({ cart, setCart, total }) {
     setCart(newCartItems);
     // console.log(cart);
   };
+
   return isCart ? (
     <>
       <h2 className="text-lime-500 text-center font-semibold text-2xl mb-3">
