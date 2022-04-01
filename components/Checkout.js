@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { AiOutlineCheck } from "react-icons/ai";
-import Payment from "./payment";
+import Payment from "./Payment";
 
 function Checkout({ setIsCart, cart, total }) {
   const [isPayment, setIsPayment] = useState(false);
