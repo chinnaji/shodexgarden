@@ -9,51 +9,26 @@ export default async function handler(req, res) {
     var total = 0;
     const { id } = req.query;
     const ticketId = Math.random().toString(36).slice(2);
-    // get tickets from database
-    // const tickets = [
-    //   {
-    //     id: "01",
-    //     title: "Swimming Ticket (Adults)",
-    //     image: "/images/tickets (2).jpg",
-    //     price: "3500",
-    //     quantity: 1,
-    //   },
-    //   {
-    //     id: "02",
-    //     title: "Swimming Ticket (Kids)",
-    //     image: "/images/tickets (1).jpg",
-    //     price: "1200",
-    //     quantity: 1,
-    //   },
-    //   {
-    //     id: "03",
-    //     title: "Garden Area Ticket (Adults)",
-    //     image: "/images/tickets (3).jpg",
-    //     price: "2500",
-    //     quantity: 1,
-    //   },
-    //   {
-    //     id: "04",
-    //     title: "Garden Area Ticket (Kids)",
-    //     image: "/images/tickets (4).jpg",
-    //     price: "1500",
-    //     quantity: 1,
-    //   },
-    // ];
+    var cleanCart;
+
+    const [cart, customerDetails] = req.body;
+    const { reference, email, metadata } = customerDetails;
 
     // send order data to backend
     function saveToDb() {
       const orderDetails = [
         {
-          id: "#" + new Date().toISOString().slice(0, 19),
+          id: new Date().toISOString().slice(0, 19),
           ticketId: ticketId,
           datePurchased: new Date().toISOString(),
           isValid: true,
-          orderItems: filteredTicketsFromDb,
+          orderItems: cleanCart,
+          total: total,
+          customerDetails: [email, reference, metadata],
         },
       ];
       console.log(orderDetails);
-      return orderDetails;
+      // return orderDetails;
     }
 
     // send email if payment is verified
@@ -79,7 +54,7 @@ export default async function handler(req, res) {
       // send mail with defined transport object
       let info = transporter.sendMail({
         from: '"Shodex Garden" <test@androidpill.com>', // sender address
-        to: verifyPaymentResponse.data.customer.email, // list of receivers
+        to: customerDetails.email, // list of receivers
         subject: "Shodex Garden - Ticket Purhase✔", // Subject line
         text: "Shodex Garden - Ticket Purhase?", // plain text body
         attachDataUrls: true, //to accept base64 content in messsage
@@ -95,12 +70,12 @@ export default async function handler(req, res) {
         html:
           `
           <h1 style="text-transform:capitalize;">Dear ${
-            verifyPaymentResponse.data.customer.first_name
-          }  ${verifyPaymentResponse.data.customer.last_name}</h1> 
+            customerDetails.metadata.name
+          }</h1> 
           </br></hr> 
           <p style="margin-bottom:20px;">Your ticket purchase hase been successfully confirmed✅. Kindly provide the QRcode below at the entrance gate. </br></hr> Love from Shodex Garden❤. </p>
       <h3 style="margin-bottom:20px;>Order Summary</h3>    
-  <table style="margin:10px auto;font-family: arial, sans-serif;border: 1px solid #dddddd;">
+  <table style="font-size:12px;margin:10px auto;font-family: arial, sans-serif;border: 1px solid #dddddd;">
   <thead >
   <tr>
   <th style='border-bottom: 1px solid #dddddd;padding: 15px;'>Item</th>
@@ -110,15 +85,14 @@ export default async function handler(req, res) {
 </thead>
 
 <tbody>
-${filteredTicketsFromDb.map(
+${cleanCart.map(
   (row) =>
     `<tr>
      <td style='border-bottom: 1px solid #dddddd;padding: 15px;'>
     ${row.title}
     </td>
     <td style='border-bottom: 1px solid #dddddd;padding: 15px;'>
-    # 
-    ${row.price}
+    #${Intl.NumberFormat("en-US").format(row.price)}
     </td> 
     <td style='border-bottom: 1px solid #dddddd;padding: 15px;'>
     X 
@@ -129,7 +103,9 @@ ${filteredTicketsFromDb.map(
 </tbody>
 </table>   
 
-<h1 style="text-transform:capitalize;border: 1px solid #dddddd;padding: 15px;text-align-center;">TOTAL - ${total}</h1> 
+<h3 style="text-transform:capitalize;border: 1px solid #dddddd;padding: 15px;text-align-center;">TOTAL - &#8358;${Intl.NumberFormat(
+            "en-US"
+          ).format(total)}</h3> 
 
           <img style="width:300px;height:300px;" src="` +
           img +
@@ -155,7 +131,7 @@ ${filteredTicketsFromDb.map(
       );
       myHeaders.append(
         "Cookie",
-        "sails.sid=s%3A6aOaty6CzqBGUi9qTd_LP6ccfjZsg8vI.mF5hg3pyowHks27cJ%2FSEfR7wzAFkv4eEcZiaBLsLV8M"
+        "sails.sid=s%3A-8ecpSkPHCDLFVszHkd1EevmHHAUG7pS.%2F5Fm0JSQ3JsJ9m9suyvBsDLf%2B1rY2jFuGAxHQ0alABQ"
       );
 
       var requestOptions = {
@@ -171,14 +147,18 @@ ${filteredTicketsFromDb.map(
         requestOptions
       );
       response = await response.json();
+
       verifyPaymentResponse = response;
       if (
         verifyPaymentResponse.data.status &&
         verifyPaymentResponse.data.amount == total * 100
       ) {
+        saveToDb(verifyPaymentResponse);
         sendEmail(verifyPaymentResponse);
+        console.log("verified");
       } else {
-        return res.status(400).json("error, contact support ");
+        // return res.status(400).json("error, contact support ");
+        console.log("not verified");
       }
     };
 
@@ -240,7 +220,7 @@ ${filteredTicketsFromDb.map(
       const filteredCart = [];
 
       // strip cartItems of price,title,image
-      req.body.map(
+      cart.map(
         (cartItem) => (
           delete cartItem.price,
           delete cartItem.title,
@@ -258,25 +238,27 @@ ${filteredTicketsFromDb.map(
 
       for (let i = 0; i < filteredTicketsFromDb.length; ++i) {
         var foundIndex = filteredTicketsFromDb.findIndex(
-          (x) => x.id === req.body[i].id
+          (x) => x.id === cart[i].id
         );
-        filteredTicketsFromDb[foundIndex].quantity =
-          req.body[foundIndex].quantity;
+        filteredTicketsFromDb[foundIndex].quantity = cart[foundIndex].quantity;
       }
 
       // get total price
       filteredTicketsFromDb.map((x) => (total += x.quantity * x.price));
+      cleanCart = filteredTicketsFromDb;
+      // call function to verify payment
+      verifyPayment();
 
-      // console.log(filteredCart);
-      console.log(tickets);
-      console.log(filteredTicketsFromDb);
-      console.log(total);
-      //   console.log({ ftfdb: filteredTicketsFromDb, t: total, fc: filteredCart });
+      // console.log(tickets);
+      // console.log(filteredTicketsFromDb);
+      // console.log(total);
       //   return { ftfdb: filteredTicketsFromDb, t: total, fc: filteredCart };
     };
 
-    // verifyPayment();
     validateCart();
+    // console.log(cart);
+    // console.log("-----");
+    // console.log(customerDetails);
   } else {
     // Handle any other HTTP method
   }

@@ -20,7 +20,17 @@ function Payment({ config, setIsPayment, cart }) {
   };
 
   const handlePayment = (ref) => {
-    var data = JSON.stringify(cart);
+    var data = JSON.stringify([cart, config]);
+    // var data = JSON.stringify([
+    //   {
+    //     _id: "6231d82cb0ef997f3dc068e5",
+    //     title: "Garden Area Ticket (Adults)",
+    //     image: "/images/tickets (3).jpg",
+    //     price: "25",
+    //     quantity: 10,
+    //     id: "6246981bfd8a058ae14c2059",
+    //   },
+    // ]);
     // var data = JSON.stringify([cart, reference]);
 
     var toBeSent = {
