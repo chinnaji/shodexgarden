@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="SS">SSS</div>
+    <script>
+      id = "1647712681243";
+      var myHeaders = new Headers();
+      myHeaders.append(
+        "Authorization",
+        "Bearer sk_test_cfada6b3ffa1b736a47a898c0df8d7a39a5ee7b1"
+      );
+      myHeaders.append(
+        "Cookie",
+        "sails.sid=s%3A6aOaty6CzqBGUi9qTd_LP6ccfjZsg8vI.mF5hg3pyowHks27cJ%2FSEfR7wzAFkv4eEcZiaBLsLV8M"
+      );
+
+      var requestOptions = {
+        method: "GET",
+        headers: myHeaders,
+        redirect: "follow",
+      };
+
+      var a = 1;
+      const verifyPayment = async () => {
+        let response = await fetch(
+          `https://api.paystack.co/transaction/verify/${id}`,
+          requestOptions
+        );
+        response = await response.json();
+        a = response;
+        console.log(response);
+        return a;
+      };
+
+      verifyPayment();
+      //   console.log(verifyPayment());
+    </script>
+  </body>
+</html>

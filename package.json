@@ -10,7 +10,10 @@
   },
   "dependencies": {
     "axios": "^0.26.1",
+    "mongodb": "^4.4.1",
     "next": "12.1.0",
+    "nodemailer": "^6.7.3",
+    "qrcode": "^1.5.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-hook-form": "^7.28.0",

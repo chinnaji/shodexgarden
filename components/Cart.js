@@ -8,8 +8,10 @@ import Checkout from "./Checkout";
 
 function Cart({ cart, setCart, total }) {
   const [isCart, setIsCart] = useState(true);
+  // console.log();
 
   const handleQuantityChange = (cartItemId, type) => {
+    // console.log(cart);
     // get the item in the cart
     const item = cart.find(
       (singleCartItem) => singleCartItem.id === cartItemId
