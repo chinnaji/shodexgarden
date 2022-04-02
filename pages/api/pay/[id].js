@@ -129,7 +129,8 @@ ${cleanCart.map(
       var myHeaders = new Headers();
       myHeaders.append(
         "Authorization",
-        "Bearer sk_test_cfada6b3ffa1b736a47a898c0df8d7a39a5ee7b1"
+        process.env.SECRET_KEY
+        // "Bearer sk_test_cfada6b3ffa1b736a47a898c0df8d7a39a5ee7b1"
       );
       myHeaders.append(
         "Cookie",
