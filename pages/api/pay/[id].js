@@ -54,15 +54,15 @@ export default async function handler(req, res) {
 
       // create reusable transporter object using the default SMTP transport
       let transporter = nodemailer.createTransport({
-        host: "mail.androidpill.com",
-        port: 587,
+        host: process.env.NODEMAILER_HOST,
+        port: parseInt(process.env.NODEMAILER_PORT),
         secure: false, // true for 465, false for other ports
         auth: {
-          user: "test@androidpill.com",
-          pass: "#t})Katv3OoO",
+          user: process.env.NODEMAILER_USER,
+          pass: process.env.NODEMAILER_PASS,
         },
         tls: {
-          rejectUnauthorized: false, //set to true in production
+          rejectUnauthorized: true, //set to true in production
         },
       });
 
