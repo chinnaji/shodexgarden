@@ -1,39 +1,54 @@
 import clientPromise from "../../lib/mongodb";
-var md5 = require("md5");
+const nodemailer = require("nodemailer");
+var QRCode = require("qrcode");
 
 export default async function handler(req, res) {
-  const a = 1;
-  // console.log(md5('message'));
+  async function sendEmail(verifyPaymentResponse) {
+    // generate qrcode image
+    let img = await QRCode.toDataURL(ticketId);
 
-  // try {
-  //   var hashedTicketId = md5(new Date().toISOString().slice(0, 19));
+    // create reusable transporter object using the default SMTP transport
+    let transporter = nodemailer.createTransport({
+      host: "mail.androidpill.com",
+      port: 587,
+      secure: false, // true for 465, false for other ports
+      auth: {
+        user: "test@androidpill.com",
+        pass: "#t})Katv3OoO",
+      },
+      tls: {
+        rejectUnauthorized: true, //set to true in production
+      },
+    });
 
-  //   // async function saveToDb() {
-  //   const client = await clientPromise;
-  //   const db = client.db("shodexGarden");
-  //   // const data = await db.collection("shodexGardenOrders").find({}).toArray();
+    // send mail with defined transport object
+    let info = transporter.sendMail({
+      from: '"Shodex Garden" <test@androidpill.com>', // sender address
+      to: customerDetails.email, // list of receivers
+      subject: "Shodex Garden - Ticket Purhase✔", // Subject line
+      text: "Shodex Garden - Ticket Purhase?", // plain text body
+      attachDataUrls: true, //to accept base64 content in messsage
+      // attachments: [
+      //   {
+      //     // encoded string as an attachment
+      //     filename: "ticket.png",
+      //     content: img.split("base64,")[1],
+      //     path: img,
+      //     encoding: "base64",
+      //   },
+      // ],
+      html: `<h1>hello</h1>`,
+    });
+    const nodeMailerResponse = await info.messageId;
+    // info.bbb = info.messageId;
+    console.log("Message sent: %s", nodeMailerResponse);
+    // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
 
-  //   const orderDetails = {
-  //     id: new Date().toISOString().slice(0, 19),
-  //     ticketId: hashedTicketId,
-  //     datePurchased: new Date().toISOString(),
-  //     isValid: true,
-  //     orderItems: ["apple", "orange", "mango"],
-  //     total: "10000",
-  //     customerDetails: ["apple", "orange", "mango"],
-  //   };
-  //   await db.collection("shodexGardenOrders").insertOne(orderDetails);
-  //   return res.json({
-  //     message: "order added successfully",
-  //     success: true,
-  //   });
-  // } catch (error) {
-  //   // return an error
-  //   return res.json({
-  //     message: new Error(error).message,
-  //     success: false,
-  //   });
-  // }
+    //
+    // Preview only available when sending through an Ethereal account
+    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+    // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+  }
   return res.json({
     message: process.env.NULI,
     success: true,

@@ -62,7 +62,7 @@ export default async function handler(req, res) {
           pass: "#t})Katv3OoO",
         },
         tls: {
-          rejectUnauthorized: true, //set to true in production
+          rejectUnauthorized: false, //set to true in production
         },
       });
 
