@@ -2,6 +2,7 @@ import clientPromise from "../../lib/mongodb";
 var md5 = require("md5");
 
 export default async function handler(req, res) {
+  const a = 1;
   // console.log(md5('message'));
 
   // try {
