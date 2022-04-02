@@ -1,4 +1,5 @@
 import clientPromise from "../../../lib/mongodb";
+var md5 = require("md5");
 
 export default async function handler(req, res) {
   const nodemailer = require("nodemailer");
@@ -8,33 +9,46 @@ export default async function handler(req, res) {
     var total = 0;
     const { id } = req.query;
     const ticketId = Math.random().toString(36).slice(2);
+    var hashedTicketId = md5(ticketId);
     var cleanCart;
 
     const [cart, customerDetails] = req.body;
     const { reference, email, metadata } = customerDetails;
 
     // send order data to backend
-    function saveToDb() {
-      const orderDetails = [
-        {
-          id: new Date().toISOString().slice(0, 19),
-          ticketId: ticketId,
+    async function saveToDb() {
+      try {
+        const client = await clientPromise;
+        const db = client.db("shodexGarden");
+
+        const orderDetails = {
+          ticketId: hashedTicketId,
           datePurchased: new Date().toISOString(),
           isValid: true,
           orderItems: cleanCart,
           total: total,
-          customerDetails: [email, reference, metadata],
-        },
-      ];
-      console.log(orderDetails);
-      return res.status(200).json({ tobeposted: true });
+          customerDetails: { email, reference, metadata },
+        };
+        await db.collection("shodexGardenOrders").insertOne(orderDetails);
+        console.log(orderDetails);
+
+        return res.json({
+          message: "order added successfully",
+          success: true,
+        });
+      } catch (error) {
+        // return an error
+        return res.json({
+          message: new Error(error).message,
+          success: false,
+        });
+      }
 
       // return orderDetails;
     }
 
     // send email if payment is verified
     async function sendEmail(verifyPaymentResponse) {
-      // var bbb;
       // generate qrcode image
       let img = await QRCode.toDataURL(ticketId);
 
@@ -48,7 +62,7 @@ export default async function handler(req, res) {
           pass: "#t})Katv3OoO",
         },
         tls: {
-          rejectUnauthorized: false, //set to true in production
+          rejectUnauthorized: true, //set to true in production
         },
       });
 
@@ -112,25 +126,23 @@ ${cleanCart.map(
           img +
           '">  </br></hr> ', // html body
       });
+      const nodeMailerResponse = await info.messageId;
       // info.bbb = info.messageId;
-      console.log("Message sent: %s", info.messageId);
+      console.log("Message sent: %s", nodeMailerResponse);
       // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
 
       //
-      saveToDb();
       // Preview only available when sending through an Ethereal account
       console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
       // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
-      saveToDb();
-      // return res.status(200).json({ tobeposted: true });
     }
 
     const verifyPayment = async () => {
       var myHeaders = new Headers();
       myHeaders.append(
         "Authorization",
-        process.env.SECRET_KEY
-        // "Bearer sk_test_cfada6b3ffa1b736a47a898c0df8d7a39a5ee7b1"
+        // process.env.SECRET_KEY
+        "Bearer sk_test_cfada6b3ffa1b736a47a898c0df8d7a39a5ee7b1"
       );
       myHeaders.append(
         "Cookie",
@@ -158,10 +170,8 @@ ${cleanCart.map(
       ) {
         saveToDb(verifyPaymentResponse);
         sendEmail(verifyPaymentResponse);
-        console.log("verified");
       } else {
-        // return res.status(400).json("error, contact support ");
-        console.log("not verified");
+        return res.status(400).json("error, contact support ");
       }
     };
 
@@ -226,6 +236,7 @@ ${cleanCart.map(
 
     validateCart();
   } else {
+    return res.status(400).json("path not found");
     // Handle any other HTTP method
   }
 }
