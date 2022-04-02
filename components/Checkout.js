@@ -27,7 +27,7 @@ function Checkout({ setIsCart, cart, total }) {
       name: fullName,
       phone: phoneNumber,
     },
-    publicKey: process.env.NEXT_PUBLIC_PUBLIC_KEY,
+    publicKey: process.env.PUBLIC_KEY,
     text: "Pay Now",
   };
 
