@@ -12,6 +12,7 @@ function tickets({ ticketsFromDb }) {
 
   return (
     <>
+      {process.env.NODE_ENV}
       <main>
         <TicketsListing ticketItems={ticketsFromDb} />
       </main>
@@ -23,9 +24,9 @@ function tickets({ ticketsFromDb }) {
 // export async function getStaticProps() {
 export async function getServerSideProps() {
   const res = await fetch(
-    process.env.NODE_ENV == "development"
-      ? "http://localhost:3000/api/tickets"
-      : "https://shodexgarden.vercel.app/api/tickets"
+    // process.env.NODE_ENV == "development"
+    //   ? "http://localhost:3000/api/tickets":
+    "https://shodexgarden.vercel.app/api/tickets"
   );
   const ticketsFromDb = await res.json();
   return {
