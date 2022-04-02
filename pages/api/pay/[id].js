@@ -1,5 +1,4 @@
-const { connectToDatabase } = require("../../../lib/mongodb");
-const ObjectId = require("mongodb").ObjectId;
+import clientPromise from "../../../lib/mongodb";
 
 export default async function handler(req, res) {
   const nodemailer = require("nodemailer");
@@ -28,12 +27,14 @@ export default async function handler(req, res) {
         },
       ];
       console.log(orderDetails);
+      return res.status(200).json({ tobeposted: true });
+
       // return orderDetails;
     }
 
     // send email if payment is verified
     async function sendEmail(verifyPaymentResponse) {
-      var bbb;
+      // var bbb;
       // generate qrcode image
       let img = await QRCode.toDataURL(ticketId);
 
@@ -111,7 +112,7 @@ ${cleanCart.map(
           img +
           '">  </br></hr> ', // html body
       });
-      info.bbb = info.messageId;
+      // info.bbb = info.messageId;
       console.log("Message sent: %s", info.messageId);
       // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
 
@@ -120,7 +121,8 @@ ${cleanCart.map(
       // Preview only available when sending through an Ethereal account
       console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
       // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
-      return res.status(200).json({ tobeposted: saveToDb() });
+      saveToDb();
+      // return res.status(200).json({ tobeposted: true });
     }
 
     const verifyPayment = async () => {
@@ -164,56 +166,22 @@ ${cleanCart.map(
 
     // fetch tickets from database
     async function getTickets() {
-      let { db } = await connectToDatabase();
-      // fetch the tickets
-      var tickets1 = await db
+      const client = await clientPromise;
+      const db = client.db("shodexGarden");
+      // fetch the posts
+      const data = await db
         .collection("shodexGardenTickets")
         .find({})
-        // .sort({ published: -1 })
         .toArray();
-      // return the tickets
+
+      const tickets1 = JSON.parse(JSON.stringify(data));
+
       return tickets1;
     }
 
     const validateCart = async () => {
-      var tickets = await getTickets();
-      // return the tickets
-
       // fetch the tickets
-      var tickets = [
-        {
-          _id: "6231d75cb0ef997f3dc068e3",
-          title: "Swimming Ticket (Adults)",
-          image: "/images/tickets (2).jpg",
-          price: "3500",
-          quantity: 1,
-          id: "62469776fd8a058ae14c2053",
-        },
-        {
-          _id: "6231d7f6b0ef997f3dc068e4",
-          title: "Swimming Ticket (Kids)",
-          image: "/images/tickets (1).jpg",
-          price: "1200",
-          quantity: 1,
-          id: "624697e7fd8a058ae14c2057",
-        },
-        {
-          _id: "6231d82cb0ef997f3dc068e5",
-          title: "Garden Area Ticket (Adults)",
-          image: "/images/tickets (3).jpg",
-          price: "2500",
-          quantity: 1,
-          id: "6246981bfd8a058ae14c2059",
-        },
-        {
-          _id: "6231d850b0ef997f3dc068e6",
-          title: "Garden Area Ticket (Kids)",
-          image: "/images/tickets (4).jpg",
-          price: "1500",
-          quantity: 1,
-          id: "624697fdfd8a058ae14c2058",
-        },
-      ];
+      var tickets = await getTickets();
       // return the tickets
 
       // a place to store cart items after
@@ -256,9 +224,6 @@ ${cleanCart.map(
     };
 
     validateCart();
-    // console.log(cart);
-    // console.log("-----");
-    // console.log(customerDetails);
   } else {
     // Handle any other HTTP method
   }
