@@ -10,6 +10,7 @@ import ServicesSection from "../components/homepage-sections/SevicesSection";
 export default function Home() {
   return (
     <main className="h-full w-full  text-grey-600">
+      {process.env.NODE_ENV}
       <Hero />
       <div className=" max-w-[1200px] mx-auto my-5  px-3">
         <PopularAattractions />

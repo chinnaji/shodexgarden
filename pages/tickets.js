@@ -22,7 +22,7 @@ function tickets({ ticketsFromDb }) {
 }
 
 // export async function getStaticProps() {
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const res = await fetch(
     // process.env.NODE_ENV == "development"
     //   ? "http://localhost:3000/api/tickets":
