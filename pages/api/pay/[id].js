@@ -65,7 +65,7 @@ export default async function handler(req, res) {
           pass: process.env.NODEMAILER_PASS,
         },
         tls: {
-          rejectUnauthorized: true, //set to true in production
+          rejectUnauthorized: false, //set to true in production
         },
       });
 
