@@ -15,6 +15,8 @@ function tickets({ ticketsFromDb }) {
       <main>
         <TicketsListing ticketItems={ticketsFromDb} />
       </main>
+      <h1> {process.env.PUBLIC_KEY} aa</h1>
+
       <GoogleMap />
     </>
   );
