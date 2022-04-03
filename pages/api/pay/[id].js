@@ -14,6 +14,7 @@ export default async function handler(req, res) {
 
     const [cart, customerDetails] = req.body;
     const { reference, email, metadata } = customerDetails;
+    const fullResponse = [];
 
     // send order data to backend
     async function saveToDb() {
@@ -30,12 +31,12 @@ export default async function handler(req, res) {
           customerDetails: { email, reference, metadata },
         };
         await db.collection("shodexGardenOrders").insertOne(orderDetails);
-        console.log(orderDetails);
-
-        return res.json({
+        // console.log(orderDetails);
+        fullResponse.push({
           message: "order added successfully",
           success: true,
         });
+        return res.json(fullResponse);
       } catch (error) {
         // return an error
         return res.json({
@@ -83,8 +84,7 @@ export default async function handler(req, res) {
         //   },
         // ],
         html:
-          `
-          <h1 style="text-transform:capitalize;">Dear ${
+          `<h1 style="text-transform:capitalize;">Dear ${
             customerDetails.metadata.name
           }</h1> 
           </br></hr> 
@@ -100,34 +100,41 @@ export default async function handler(req, res) {
 </thead>
 
 <tbody>
-${cleanCart.map(
-  (row) =>
-    `<tr>
-     <td style='border-bottom: 1px solid #dddddd;padding: 15px;'>
-    ${row.title}
-    </td>
-    <td style='border-bottom: 1px solid #dddddd;padding: 15px;'>
-    #${Intl.NumberFormat("en-US").format(row.price)}
-    </td> 
-    <td style='border-bottom: 1px solid #dddddd;padding: 15px;'>
-    X 
-    ${row.quantity} 
-    </td> 
-    </tr>`
-)}
+${cleanCart.map((row) => (
+  <>
+    "
+    <tr>
+      <td style="border-bottom: 1px solid #dddddd;padding: 15px;">
+        ${row.title}
+      </td>
+      <td style="border-bottom: 1px solid #dddddd;padding: 15px;">
+        #${Intl.NumberFormat("en-US").format(row.price)}
+      </td>
+      <td style="border-bottom: 1px solid #dddddd;padding: 15px;">
+        X ${row.quantity}
+      </td>
+    </tr>
+    "
+  </>
+))}
 </tbody>
 </table>   
 
 <h3 style="text-transform:capitalize;border: 1px solid #dddddd;padding: 15px;text-align-center;">TOTAL - &#8358;${Intl.NumberFormat(
             "en-US"
-          ).format(total)}</h3> 
-
-          <img style="width:300px;height:300px;" src="` +
+          ).format(total)}</h3> <img style="width:300px;height:300px;" src="` +
           img +
-          '">  </br></hr> ', // html body
+          '">  </br></hr> ',
       });
       const nodeMailerResponse = await info.messageId;
       // info.bbb = info.messageId;
+      fullResponse.push({
+        nmr: nodeMailerResponse,
+        nmgtmui: nodemailer.getTestMessageUrl(info),
+        nminfo: info,
+        transporter,
+      });
+
       console.log("Message sent: %s", nodeMailerResponse);
       // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
 
@@ -168,6 +175,8 @@ ${cleanCart.map(
         verifyPaymentResponse.data.status &&
         verifyPaymentResponse.data.amount == total * 100
       ) {
+        fullResponse.push("payment verified");
+
         saveToDb(verifyPaymentResponse);
         sendEmail(verifyPaymentResponse);
       } else {
@@ -184,8 +193,8 @@ ${cleanCart.map(
         .collection("shodexGardenTickets")
         .find({})
         .toArray();
-
       const tickets1 = JSON.parse(JSON.stringify(data));
+      fullResponse.push({ tikfdb: tickets1 });
 
       return tickets1;
     }
@@ -226,6 +235,7 @@ ${cleanCart.map(
       filteredTicketsFromDb.map((x) => (total += x.quantity * x.price));
       cleanCart = filteredTicketsFromDb;
       // call function to verify payment
+      fullResponse.push("cart verified");
       verifyPayment();
 
       // console.log(tickets);
