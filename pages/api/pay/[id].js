@@ -17,7 +17,7 @@ export default async function handler(req, res) {
     const fullResponse = [];
 
     // send order data to backend
-    async function saveToDb() {
+    async function saveToDb(isEmailSent) {
       try {
         const client = await clientPromise;
         const db = client.db(process.env.DB_NAME);
@@ -29,12 +29,14 @@ export default async function handler(req, res) {
           orderItems: cleanCart,
           total: total,
           customerDetails: { email, reference, metadata },
+          isEmailSent,
         };
         await db.collection("shodexGardenOrders").insertOne(orderDetails);
         // console.log(orderDetails);
         fullResponse.push({
           message: "order added successfully",
           success: true,
+          orderDetails,
         });
         return res.json(fullResponse);
       } catch (error) {
@@ -67,8 +69,7 @@ export default async function handler(req, res) {
         },
       });
 
-      // send mail with defined transport object
-      let info = transporter.sendMail({
+      let mailOptions = {
         from: '"Shodex Garden" <test@androidpill.com>', // sender address
         to: customerDetails.email, // list of receivers
         subject: "Shodex Garden - Ticket Purhase✔", // Subject line
@@ -125,23 +126,52 @@ ${cleanCart.map((row) => (
           ).format(total)}</h3> <img style="width:300px;height:300px;" src="` +
           img +
           '">  </br></hr> ',
-      });
-      const nodeMailerResponse = await info.messageId;
-      // info.bbb = info.messageId;
-      fullResponse.push({
-        nmr: nodeMailerResponse,
-        nmgtmui: nodemailer.getTestMessageUrl(info),
-        nminfo: info,
-        transporter,
+      };
+      // send mail with defined transport object
+      // let info = transporter.sendMail(mailOptions);
+
+      transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+          fullResponse.push({ nodemaileErr: error.reason.toString() });
+          console.log(error);
+          saveToDb(error.reason.toString());
+
+          // return res.send(
+          //   "Error sending confirmation email to: " + user.username
+          // );
+        } else {
+          saveToDb("email sent");
+          fullResponse.push({ nodemaileErr: "success" });
+        }
+
+        // console.log("Message sent: %s", info.messageId);
+
+        // req.flash(
+        //   "success",
+        //   "Success! Welcome " +
+        //     user.fullname +
+        //     "! Please check your email, and click the link to complete your registration."
+        // );
+
+        // res.redirect("/");
       });
 
-      console.log("Message sent: %s", nodeMailerResponse);
+      // const nodeMailerResponse = await info.messageId;
+      // info.bbb = info.messageId;
+      // fullResponse.push({
+      //   nmr: nodeMailerResponse,
+      //   nmgtmui: nodemailer.getTestMessageUrl(info),
+      //   nminfo: info,
+      //   transporter,
+      // });
+
+      // console.log("Message sent: %s", nodeMailerResponse);
       // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
       console.log(transporter.options.host);
 
       //
       // Preview only available when sending through an Ethereal account
-      console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+      // console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
       // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
     }
 
@@ -177,9 +207,8 @@ ${cleanCart.map((row) => (
         verifyPaymentResponse.data.amount == total * 100
       ) {
         fullResponse.push("payment verified");
-
-        saveToDb(verifyPaymentResponse);
         sendEmail(verifyPaymentResponse);
+        // saveToDb(verifyPaymentResponse);
       } else {
         return res.status(400).json("error, contact support ");
       }

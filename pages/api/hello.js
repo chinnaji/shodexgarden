@@ -51,15 +51,15 @@ export default async function handler(req, res) {
   // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
 
   return res.json({
-    message: {
-      aa: transporter.options.host,
-      a: process.env.NULI,
-      pass: process.env.NODEMAILER_PASS,
-      user: process.env.NODEMAILER_USER,
-      port: process.env.NODEMAILER_PORT,
-      host: process.env.NODEMAILER_HOST,
-      sk: process.env.SECRET_KEY,
-    },
+    // message: {
+    //   aa: transporter.options.host,
+    //   a: process.env.NULI,
+    //   pass: process.env.NODEMAILER_PASS,
+    //   user: process.env.NODEMAILER_USER,
+    //   port: process.env.NODEMAILER_PORT,
+    //   host: process.env.NODEMAILER_HOST,
+    //   sk: process.env.SECRET_KEY,
+    // },
     success: true,
   });
 }
