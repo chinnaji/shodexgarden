@@ -20,7 +20,7 @@ export default async function handler(req, res) {
     async function saveToDb() {
       try {
         const client = await clientPromise;
-        const db = client.db("shodexGarden");
+        const db = client.db(process.env.DB_NAME);
 
         const orderDetails = {
           ticketId: hashedTicketId,
@@ -137,6 +137,7 @@ ${cleanCart.map((row) => (
 
       console.log("Message sent: %s", nodeMailerResponse);
       // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+      console.log(transporter.options.host);
 
       //
       // Preview only available when sending through an Ethereal account
@@ -148,8 +149,8 @@ ${cleanCart.map((row) => (
       var myHeaders = new Headers();
       myHeaders.append(
         "Authorization",
-        // process.env.SECRET_KEY
-        "Bearer sk_test_cfada6b3ffa1b736a47a898c0df8d7a39a5ee7b1"
+        process.env.SECRET_KEY
+        // "Bearer sk_test_cfada6b3ffa1b736a47a898c0df8d7a39a5ee7b1"
       );
       myHeaders.append(
         "Cookie",
@@ -187,10 +188,10 @@ ${cleanCart.map((row) => (
     // fetch tickets from database
     async function getTickets() {
       const client = await clientPromise;
-      const db = client.db("shodexGarden");
+      const db = client.db(process.env.DB_NAME);
       // fetch the posts
       const data = await db
-        .collection("shodexGardenTickets")
+        .collection(process.env.TICKETS_COLLECTION)
         .find({})
         .toArray();
       const tickets1 = JSON.parse(JSON.stringify(data));

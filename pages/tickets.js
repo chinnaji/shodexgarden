@@ -15,7 +15,6 @@ function tickets({ ticketsFromDb }) {
       <main>
         <TicketsListing ticketItems={ticketsFromDb} />
       </main>
-      <h1> {process.env.PUBLIC_KEY} aa</h1>
 
       <GoogleMap />
     </>
@@ -34,9 +33,12 @@ export async function getStaticProps() {
   // const ticketsFromDb = JSON.parse(JSON.stringify(tickets));
 
   const client = await clientPromise;
-  const db = client.db("shodexGarden");
+  const db = client.db(process.env.DB_NAME);
   // fetch the posts
-  const data = await db.collection("shodexGardenTickets").find({}).toArray();
+  const data = await db
+    .collection(process.env.TICKETS_COLLECTION)
+    .find({})
+    .toArray();
   const ticketsFromDb = JSON.parse(JSON.stringify(data));
 
   return {
