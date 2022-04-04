@@ -1,11 +1,19 @@
 import React, { useState } from "react";
 import { PaystackButton } from "react-paystack";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
+import { MdPayments } from "react-icons/md";
 // import Image from "next/image";
 // import paymentImg from "../images/paymentImg.png";
 import axios from "axios";
+import OrderDone from "./OrderDone";
+import lookdown from "../images/look-down.jpg";
+import paystack from "../images/paystack.png";
+import Image from "next/image";
 
 function Payment({ config, setIsPayment, cart }) {
+  // document.querySelector("paystack_btn").innerHTML = "hi";
+  const [paymentRes, setPaymentRes] = useState(false);
+  const [err, SetErr] = useState(false);
   // you can call this function anything
   const handlePaystackCloseAction = () => {
     // implementation for  whatever you want to do when the Paystack dialog closed.
@@ -14,24 +22,13 @@ function Payment({ config, setIsPayment, cart }) {
 
   const componentProps = {
     ...config,
-    text: "Paystack Button Implementation",
+    // text: "Paystack Button Implementation",
     onSuccess: (reference) => handlePaystackSuccessAction(reference),
     onClose: handlePaystackCloseAction,
   };
 
   const handlePayment = (ref) => {
     var data = JSON.stringify([cart, config]);
-    // var data = JSON.stringify([
-    //   {
-    //     _id: "6231d82cb0ef997f3dc068e5",
-    //     title: "Garden Area Ticket (Adults)",
-    //     image: "/images/tickets (3).jpg",
-    //     price: "25",
-    //     quantity: 10,
-    //     id: "6246981bfd8a058ae14c2059",
-    //   },
-    // ]);
-    // var data = JSON.stringify([cart, reference]);
 
     var toBeSent = {
       method: "post",
@@ -45,27 +42,12 @@ function Payment({ config, setIsPayment, cart }) {
     axios(toBeSent)
       .then((response) => {
         console.log(response.data);
+        setPaymentRes(response.data);
       })
       .catch(function (error) {
         console.log(error);
+        SetErr(true);
       });
-
-    //   var myHeaders = new Headers();
-    //   myHeaders.append("Content-Type", "application/json");
-
-    //   var raw = JSON.stringify(cart);
-
-    //   var requestOptions = {
-    //     method: "POST",
-    //     headers: myHeaders,
-    //     body: raw,
-    //     redirect: "follow",
-    //   };
-
-    //   fetch("/api/pay", requestOptions)
-    //     .then((response) => response.text())
-    //     .then((result) => console.log(result))
-    //     .catch((error) => console.log("error", error));
   };
 
   // you can call this function anything
@@ -80,24 +62,50 @@ function Payment({ config, setIsPayment, cart }) {
         onClick={() => setIsPayment(false)}
         className="absolute left-0 -top-7 text-zinc-700 cursor-pointer text-2xl"
       />
+      {/* <button onClick={() => setPaymentRes(!paymentRes)}>lll</button> */}
 
-      {/* <div className="w-64 h-52 block mx-auto relative cursor-pointer">
-        <Image
-          src={paymentImg}
-          layout="responsive"
-          alt="shodex garden logo"
-          priority
-          loading="eager"
+      {paymentRes ? (
+        <OrderDone
+          // ticketId={paymentRes && paymentRes.ticketId}
+          ticketId={paymentRes ? paymentRes[0].ticketId : "error"}
+          isError={err}
         />
-      </div> */}
+      ) : (
+        <>
+          <h1 className="text-2xl -mt-3 font-semibold text-zinc-700 text-center ">
+            Pay With Paystack
+          </h1>
+          <div className="w-full md:h-[180px] h-[250px] md:w-1/2 relative rounded-lg text-center mx-auto my-12">
+            {" "}
+            <Image
+              src={lookdown}
+              layout="fill"
+              objectFit="cover"
+              alt={`look donwards`}
+              className="rounded-lg"
+            />
+          </div>
 
-      <h1>Pay With Paystack</h1>
-      <div className="px-10">
-        <PaystackButton
-          {...componentProps}
-          className="text-white bg-lime-500 w-full py-1.5 "
-        />
-      </div>
+          <div className="px-10 my-5">
+            <PaystackButton
+              {...componentProps}
+              className="flex items-center justify-center w-full hover:bg-lime-600 cursor-pointer bg-lime-500 ease-in-out duration-300 text-zinc-50 py-4 mx-auto my-5 rounded font-bold "
+            >
+              <MdPayments className="mr-3 text-xl" /> <span>PAY NOW!</span>
+            </PaystackButton>
+          </div>
+          <div className="w-32 h-fit relative rounded-lg m-0 p-0 mx-auto">
+            {" "}
+            <Image
+              src={paystack}
+              layout="responsive"
+              objectFit="cover"
+              alt={`look donwards`}
+              className="rounded-lg"
+            />
+          </div>
+        </>
+      )}
     </div>
   );
 }

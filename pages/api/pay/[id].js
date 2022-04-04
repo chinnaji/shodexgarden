@@ -6,41 +6,51 @@ export default async function handler(req, res) {
   var QRCode = require("qrcode");
 
   if (req.method === "POST") {
+    // cart total
     var total = 0;
+    // request query
     const { id } = req.query;
+    // generate ticket Id
     const ticketId = Math.random().toString(36).slice(2);
+    // hash ticket is
     var hashedTicketId = md5(ticketId);
+    // after cart has been assessed and verified
     var cleanCart;
-
+    // destructure request body
     const [cart, customerDetails] = req.body;
+    // destructure customer details from request body
     const { reference, email, metadata } = customerDetails;
+    // final response tracking success and errors of all function to be returned
     const fullResponse = [];
 
     // send order data to backend
     async function saveToDb(isEmailSent) {
       try {
+        // connecting to db
         const client = await clientPromise;
         const db = client.db(process.env.DB_NAME);
-
+        // assemble order informations
         const orderDetails = {
-          ticketId: hashedTicketId,
-          datePurchased: new Date().toISOString(),
-          isValid: true,
-          orderItems: cleanCart,
-          total: total,
-          customerDetails: { email, reference, metadata },
-          isEmailSent,
+          ticketId: hashedTicketId, //hashed ticket id
+          datePurchased: new Date().toISOString(), //date of purchase
+          isValid: true, //is ticket valid
+          orderItems: cleanCart, //verified cart
+          total: total, //verified cart total
+          customerDetails: { email, reference, metadata }, //customer details
+          isEmailSent, //check if email has been sent
         };
+        // connect to db
         await db.collection("shodexGardenOrders").insertOne(orderDetails);
-        // console.log(orderDetails);
+        // store info to final response
         fullResponse.push({
-          message: "order added successfully",
+          message: "order successfull",
           success: true,
-          orderDetails,
+          // orderDetails,
+          ticketId,
         });
         return res.json(fullResponse);
       } catch (error) {
-        // return an error
+        // return an error if it isnt saved to db
         return res.json({
           message: new Error(error).message,
           success: false,
@@ -89,8 +99,8 @@ export default async function handler(req, res) {
             customerDetails.metadata.name
           }</h1> 
           </br></hr> 
-          <p style="margin-bottom:20px;">Your ticket purchase hase been successfully confirmed✅. Kindly provide the QRcode below at the entrance gate. </br></hr> Love from Shodex Garden❤. </p>
-      <h3 style="margin-bottom:20px;>Order Summary</h3>    
+          <p style="margin-bottom:20px;">Your ticket purchase hase been successfully confirmed✅. Kindly provide the QRcode below👇 at the entrance gate. </br></hr> Love from Shodex Garden❤. </p>
+      <h3 style="margin-bottom:40px;">Order Summary</h3>    
   <table style="font-size:12px;margin:10px auto;font-family: arial, sans-serif;border: 1px solid #dddddd;">
   <thead >
   <tr>
@@ -101,9 +111,9 @@ export default async function handler(req, res) {
 </thead>
 
 <tbody>
-${cleanCart.map((row) => (
-  <>
-    "
+${cleanCart.map(
+  (row) =>
+    `
     <tr>
       <td style="border-bottom: 1px solid #dddddd;padding: 15px;">
         ${row.title}
@@ -115,13 +125,12 @@ ${cleanCart.map((row) => (
         X ${row.quantity}
       </td>
     </tr>
-    "
-  </>
-))}
+    `
+)}
 </tbody>
 </table>   
 
-<h3 style="text-transform:capitalize;border: 1px solid #dddddd;padding: 15px;text-align-center;">TOTAL - &#8358;${Intl.NumberFormat(
+<h3 style="text-transform:capitalize;border: 1px solid #dddddd;padding: 15px;text-align-center;">TOTAL PAID - &#8358;${Intl.NumberFormat(
             "en-US"
           ).format(total)}</h3> <img style="width:300px;height:300px;" src="` +
           img +
@@ -132,47 +141,16 @@ ${cleanCart.map((row) => (
 
       transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
-          fullResponse.push({ nodemaileErr: error.reason.toString() });
-          console.log(error);
+          // fullResponse.push({ nodemaileErr: error.reason.toString() });
+          // console.log(error);
           saveToDb(error.reason.toString());
-
-          // return res.send(
-          //   "Error sending confirmation email to: " + user.username
-          // );
         } else {
           saveToDb("email sent");
-          fullResponse.push({ nodemaileErr: "success" });
+          // fullResponse.push({ nodemaileErr: "success" });
         }
-
-        // console.log("Message sent: %s", info.messageId);
-
-        // req.flash(
-        //   "success",
-        //   "Success! Welcome " +
-        //     user.fullname +
-        //     "! Please check your email, and click the link to complete your registration."
-        // );
-
-        // res.redirect("/");
       });
 
-      // const nodeMailerResponse = await info.messageId;
-      // info.bbb = info.messageId;
-      // fullResponse.push({
-      //   nmr: nodeMailerResponse,
-      //   nmgtmui: nodemailer.getTestMessageUrl(info),
-      //   nminfo: info,
-      //   transporter,
-      // });
-
-      // console.log("Message sent: %s", nodeMailerResponse);
-      // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
       console.log(transporter.options.host);
-
-      //
-      // Preview only available when sending through an Ethereal account
-      // console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-      // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
     }
 
     const verifyPayment = async () => {
@@ -206,7 +184,7 @@ ${cleanCart.map((row) => (
         verifyPaymentResponse.data.status &&
         verifyPaymentResponse.data.amount == total * 100
       ) {
-        fullResponse.push("payment verified");
+        // fullResponse.push("payment verified");
         sendEmail(verifyPaymentResponse);
         // saveToDb(verifyPaymentResponse);
       } else {
@@ -224,7 +202,7 @@ ${cleanCart.map((row) => (
         .find({})
         .toArray();
       const tickets1 = JSON.parse(JSON.stringify(data));
-      fullResponse.push({ tikfdb: tickets1 });
+      // fullResponse.push({ tikfdb: tickets1 });
 
       return tickets1;
     }
@@ -265,13 +243,8 @@ ${cleanCart.map((row) => (
       filteredTicketsFromDb.map((x) => (total += x.quantity * x.price));
       cleanCart = filteredTicketsFromDb;
       // call function to verify payment
-      fullResponse.push("cart verified");
+      // fullResponse.push("cart verified");
       verifyPayment();
-
-      // console.log(tickets);
-      // console.log(filteredTicketsFromDb);
-      // console.log(total);
-      //   return { ftfdb: filteredTicketsFromDb, t: total, fc: filteredCart };
     };
 
     validateCart();

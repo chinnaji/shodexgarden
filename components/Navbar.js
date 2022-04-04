@@ -33,8 +33,8 @@ function Navbar() {
   return (
     <header className=" max-h-20 overflow-hidden w-full text-zinc-600 sticky top-0 bg-white z-50">
       <nav className=" max-w-[1200px] mx-auto flex items-center justify-between px-5 md:px-3">
-        <div className="w-24 h-16 relative cursor-pointer">
-          <Link href="/" passHref>
+        <Link href="/" passHref>
+          <a className="w-24 h-16 relative cursor-pointer block">
             <Image
               src={logo}
               layout="fill"
@@ -42,8 +42,8 @@ function Navbar() {
               priority
               loading="eager"
             />
-          </Link>
-        </div>
+          </a>
+        </Link>
 
         <div className="flex">
           <div

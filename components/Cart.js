@@ -3,7 +3,7 @@ import Image from "next/image";
 import { BiX } from "react-icons/bi";
 import { BsPlus } from "react-icons/bs";
 import { CgMathMinus } from "react-icons/cg";
-import emptyCart from "../images/empty-cart.png";
+// import emptyCart from "../images/empty-cart.png";
 import Checkout from "./Checkout";
 
 function Cart({ cart, setCart, total }) {
@@ -146,19 +146,19 @@ function Cart({ cart, setCart, total }) {
               </div>
             </div>
           ))}
-          <div className="flex flex-wrap justify-between items-center w-full  px-2 pt-5 border-t-2 border-zinc-100">
-            <span className="flex mb-5 md:mb-0">
+          <div className="flex flex-wrap justify-center items-center w-full  px-2 py-5  border-b-2 border-zinc-100">
+            {/* <span className="flex mb-5 md:mb-0">
               <input
                 type="text"
                 placeholder="Enter Voucher"
-                className="w-full bg-transparent border px-2 py-1 border-zinc-400 rounded-tl-md rounded-bl-md focus:outline-none text-zinc-400"
+                className="w-full bg-transparent border px-2 py-1 border-zinc-300 bg-zinc-100 text-zinc-700 rounded-tl-md rounded-bl-md focus:outline-none"
               />
               <button className=" text-sm rounded-tr-md rounded-br-md px-2 py-1 bg-lime-500 hover:bg-lime-600 text-zinc-50">
                 APPLY
               </button>
-            </span>
+            </span> */}
             <div className="text-xl">
-              <span className="font-medium text-zinc-800">Total =</span>{" "}
+              <span className="font-semibold text-zinc-800">Total =</span>{" "}
               <span className="font-semibold text-lime-500">
                 &#8358;{Intl.NumberFormat("en-US").format(total)}
               </span>

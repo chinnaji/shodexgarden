@@ -1,10 +1,10 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
-import popularAattraction1 from "../../images/pool.svg";
-import popularAattraction2 from "../../images/arcadegame.svg";
+// import Link from "next/link";
+import popularAattraction1 from "../../images/pool.png";
+import popularAattraction2 from "../../images/arcadegame.png";
 import popularAattraction3 from "../../images/monkey.svg";
-import { GiFlowerEmblem } from "react-icons/gi";
+// import { GiFlowerEmblem } from "react-icons/gi";
 
 function PopularAattractions() {
   const popularAattractions = [

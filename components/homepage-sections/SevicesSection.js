@@ -50,7 +50,7 @@ function ServicesSection() {
               />
 
               <div className="  rounded-lg absolute flex pb-12 px-8 flex-col justify-end inset-0 bg-[#00000080] z-40 text-center text-white ">
-                <h3 className="  font-bold text-3xl mt-6 mb-2">
+                <h3 className="  font-semibold text-2xl mt-6 mb-2">
                   {service.title}
                 </h3>
                 <p className="  text-base">{service.text}</p>

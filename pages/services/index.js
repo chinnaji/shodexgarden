@@ -40,18 +40,18 @@ function services() {
       {services.map((service, index) => (
         <section
           className={`flex flex-wrap ${
-            index === 1 ? "md:flex-row-reverse" : ""
+            index === 1 ? "md:flex-row-reverse my-10 md:my-0" : ""
           }`}
           key={service.title}
         >
-          <div className="bg-white py-10  w-full md:w-1/2 flex items-center justify-center p-10">
+          <div className="md:order-1 order-last bg-white py-10  w-full md:w-1/2 flex items-center justify-center p-10">
             <div className="text-center">
               <h2 className="text-lime-500 text-3xl text-medium">
                 {service.title}
               </h2>
               <p className="mt-3 mb-6 text-base">{service.description}</p>
               <Link href={service.link} passHref>
-                <button className="rounded-full border-2 bg-transparent hover:bg-lime-500 transition-all ease-in-out delay-75 hover:text-white border-lime-500 px-8 py-1">
+                <button className="rounded-md px-10 border-2 bg-transparent hover:bg-lime-500 transition-all ease-in-out delay-75 hover:text-white border-lime-500 mt-7 py-1">
                   More
                 </button>
               </Link>

@@ -24,19 +24,19 @@ function about() {
       <h1 className="text-lime-500 text-center font-semibold text-4xl my-16">
         About Us{" "}
       </h1>
-      <section className="max-w-[900px] text-center mx-auto">
-        <h2 className="text-zinc-800 text-center font-semibold text-4xl mt-16 mb-5">
+      <section className="max-w-[700px] text-center mx-auto">
+        <h2 className="text-zinc-800 text-center font-semibold text-2xl mt-16 mb-5">
           We create comfortable spaces in which you can find adequate fun and
           joy
         </h2>
-        <p className="lg:px-32">
+        <p className="lg:px-18">
           We work with a select group of landscape contractors, water feature
           and lighting design specialists to ensure the garden design process,
           from initial concept to project completion, is smooth and seamless.
         </p>
       </section>
       <section className="my-24 md:px-32">
-        <h2 className="text-zinc-800 text-center font-semibold text-3xl mt-16 md:mb-10">
+        <h2 className="text-zinc-800 text-center font-semibold text-2xl mt-16 md:mb-10">
           Our Humble Achievements!
         </h2>
         <div className="flex flex-wrap">
@@ -63,7 +63,7 @@ function about() {
             }`}
             key={aboutItem.title}
           >
-            <div className="bg-white py-10  w-full md:w-1/2 flex items-center justify-center p-10">
+            <div className="bg-white py-10  md:order-first order-last w-full md:w-1/2 flex items-center justify-center p-10">
               <div className="text-center">
                 <h2 className="text-lime-500 text-3xl text-medium">
                   {aboutItem.title}

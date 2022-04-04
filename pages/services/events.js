@@ -42,7 +42,7 @@ function events() {
           What we offer
         </h2>
 
-        <ul>
+        <ul className="list-disc	">
           <li>Group Get-Together</li>
           <li>Parties</li>
           <li>Excursions</li>

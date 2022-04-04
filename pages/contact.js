@@ -67,7 +67,7 @@ function contact() {
                     name="name"
                     id="name"
                     placeholder="Name"
-                    className="w-full d-block px-4 rounded-sm focus:outline-none py-2 bg-transparent border-2"
+                    className="w-full d-block px-4 rounded-md focus:outline-none py-2 bg-transparent border-2 border-zinc-300 bg-zinc-100 text-zinc-700"
                   />
                 </div>
 
@@ -77,7 +77,7 @@ function contact() {
                     name="email"
                     id="email"
                     placeholder="Email Adress"
-                    className="w-full d-block px-4 rounded-sm focus:outline-none py-2 bg-transparent border-2"
+                    className="w-full d-block px-4 rounded-md focus:outline-none py-2 bg-transparent border-2 border-zinc-300 bg-zinc-100 text-zinc-700"
                   />
                 </div>
 
@@ -87,7 +87,7 @@ function contact() {
                     name="phone"
                     id="phone"
                     placeholder="Phone Number"
-                    className="w-full d-block px-4 rounded-sm focus:outline-none py-2 bg-transparent border-2"
+                    className="w-full d-block px-4 rounded-md focus:outline-none py-2 bg-transparent border-2 border-zinc-300 bg-zinc-100 text-zinc-700"
                   />
                 </div>
 
@@ -98,7 +98,7 @@ function contact() {
                     rows="4"
                     cols="50"
                     defaultValue="Message"
-                    className="w-full d-block px-4 rounded-sm focus:outline-none py-2 bg-transparent border-2"
+                    className="w-full d-block px-4 rounded-md focus:outline-none py-2 bg-transparent border-2 border-zinc-300 bg-zinc-100 text-zinc-700"
                   />
                 </div>
               </form>

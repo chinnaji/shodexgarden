@@ -28,7 +28,6 @@ function Checkout({ setIsCart, cart, total }) {
       phone: phoneNumber,
     },
     publicKey: "pk_test_cd1cb9c6f56c382b19cba19de6de6270879c8976",
-    text: "Pay Now",
   };
 
   return isPayment ? (
@@ -37,7 +36,7 @@ function Checkout({ setIsCart, cart, total }) {
     <div className="relative">
       <BsFillArrowLeftCircleFill
         onClick={() => setIsCart(true)}
-        className="absolute left-0 -top-7 text-zinc-700 cursor-pointer text-2xl"
+        className="absolute left-0 -top-6 hover:text-zinc-900 text-zinc-700 cursor-pointer text-2xl"
       />
       <h2 className="text-lime-500 text-center font-semibold text-2xl mb-4">
         CHECKOUT
@@ -46,7 +45,7 @@ function Checkout({ setIsCart, cart, total }) {
         <div>
           <input
             type="text"
-            className="block border border-grey-light w-full p-3 rounded mb-4   focus:outline-none"
+            className="block border border-zinc-300 bg-zinc-100 text-zinc-700 w-full p-3 rounded mb-4   focus:outline-none"
             name="fullname"
             placeholder="Full Name"
             required
@@ -59,7 +58,7 @@ function Checkout({ setIsCart, cart, total }) {
           <input
             type="text"
             id="email"
-            className="block border border-grey-light w-full p-3 rounded mb-4  focus:outline-none"
+            className="block border border-zinc-300 bg-zinc-100 text-zinc-700 w-full p-3 rounded mb-4  focus:outline-none"
             name="email"
             placeholder="Email"
             required
@@ -68,37 +67,20 @@ function Checkout({ setIsCart, cart, total }) {
 
           <input
             type="text"
-            className="block border border-grey-light w-full p-3 rounded mb-4  focus:outline-none"
+            className="block border border-zinc-300 bg-zinc-100 text-zinc-700 w-full p-3 rounded mb-4  focus:outline-none"
             name="phone"
             placeholder="Phone Number"
             required
             onInput={(e) => setPhoneNumber(e.target.value)}
             minLength="11"
           />
-
-          <div className="form-check mt-5 flex items-center">
-            <input
-              className="form-check-input  h-5 w-5 border border-gray-300 rounded-sm bg-white text-lime-500 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-              type="checkbox"
-              id="flexCheckDefault"
-              onChange={(e) => setIsNewsletter(e.target.checked)}
-              defaultChecked={isNewsletter}
-            />
-
-            <label
-              className="form-check-label inline-block text-lime-500"
-              htmlFor="flexCheckDefault"
-            >
-              Sign Up To Our Newsletter
-            </label>
-          </div>
         </div>
 
         <div className="w-100 text-center mt-5">
           <input
             type="submit"
             value="Proceed To Payment"
-            className="w-full hover:bg-lime-600 cursor-pointer bg-lime-500 ease-in-out duration-300 text-zinc-50  py-4 mx-auto my-5  rounded lg:text-sm font-bold "
+            className="w-full hover:bg-lime-600 cursor-pointer bg-lime-500 ease-in-out duration-300 text-zinc-50  py-4 mx-auto my-5  rounded  font-bold "
           />
         </div>
       </form>
