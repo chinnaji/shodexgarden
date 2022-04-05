@@ -11,7 +11,7 @@ import paystack from "../images/paystack.png";
 import Image from "next/image";
 
 function Payment({ config, setIsPayment, cart }) {
-  // document.querySelector("paystack_btn").innerHTML = "hi";
+  const [isLoading, setIsLoading] = useState(false);
   const [paymentRes, setPaymentRes] = useState(false);
   const [err, SetErr] = useState(false);
   // you can call this function anything
@@ -28,6 +28,7 @@ function Payment({ config, setIsPayment, cart }) {
   };
 
   const handlePayment = (ref) => {
+    setIsLoading(true);
     var data = JSON.stringify([cart, config]);
 
     var toBeSent = {
@@ -43,10 +44,12 @@ function Payment({ config, setIsPayment, cart }) {
       .then((response) => {
         console.log(response.data);
         setPaymentRes(response.data);
+        setIsLoading(false);
       })
       .catch(function (error) {
         console.log(error);
         SetErr(true);
+        setIsLoading(false);
       });
   };
 
@@ -56,14 +59,16 @@ function Payment({ config, setIsPayment, cart }) {
     handlePayment(reference);
   };
 
-  return (
+  return isLoading ? (
+    <h2 className="my-10 py-5 text-center">Loading...</h2>
+  ) : (
     <div className="relative">
-      <BsFillArrowLeftCircleFill
-        onClick={() => setIsPayment(false)}
-        className="absolute left-0 -top-2 text-zinc-700 cursor-pointer text-2xl"
-      />
-      {/* <button onClick={() => setPaymentRes(!paymentRes)}>lll</button> */}
-
+      {paymentRes ? null : (
+        <BsFillArrowLeftCircleFill
+          onClick={() => setIsPayment(false)}
+          className="absolute left-0 -top-2 text-zinc-700 cursor-pointer text-2xl"
+        />
+      )}
       {paymentRes ? (
         <OrderDone
           // ticketId={paymentRes && paymentRes.ticketId}

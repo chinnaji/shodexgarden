@@ -6,7 +6,7 @@ import Error from "./Error";
 function OrderDone({ ticketId, isError }) {
   const [src, setSrc] = useState("");
   useEffect(() => {
-    QRCode.toDataURL("ticketId")
+    QRCode.toDataURL(ticketId)
       .then((url) => {
         // console.log(url);
         setSrc(url);
