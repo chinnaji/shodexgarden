@@ -23,7 +23,7 @@ function Hero() {
             </p>
             <div>
               <Link href="/" passHref>
-                <button className=" mx-auto lg:mx-0 flex px-6 text-sm py-3  my-6 lg:my-12 bg-lime-500 hover:bg-lime-600 cursor-pointer rounded transition duration-100 ease-out hover:ease-in">
+                <button className=" mx-auto lg:mx-0 flex px-7 text-sm py-3  my-6 lg:my-12 bg-lime-500 hover:bg-lime-600 cursor-pointer rounded transition duration-100 ease-out hover:ease-in">
                   <span className="mr-2 font-semibold">About Us</span>
                   {/* <span>
                     <BsArrowRightShort className="text-2xl" />

@@ -32,7 +32,7 @@ function Navbar() {
 
   return (
     <header className=" max-h-20 overflow-hidden w-full text-zinc-600 sticky top-0 bg-white z-50">
-      <nav className=" max-w-[1200px] mx-auto flex items-center justify-between px-5 md:px-3">
+      <nav className=" max-w-[1200px] mx-auto flex items-center justify-between px-5 md:px-3 ">
         <Link href="/" passHref>
           <a className="w-24 h-16 relative cursor-pointer block">
             <Image
@@ -48,7 +48,7 @@ function Navbar() {
         <div className="flex">
           <div
             className={` ${
-              isSidebar ? "block" : "hidden"
+              isSidebar ? "block " : "hidden"
             } fixed h-screen lg:h-full  bg-white inset-0  ease-in-out duration-500
           lg:block lg:relative`}
           >
@@ -59,7 +59,7 @@ function Navbar() {
             />
             {/* </div> */}
 
-            <ul className="flex lg:flex-row ml-auto flex-col justify-center items-center h-full">
+            <ul className="flex lg:flex-row ml-auto flex-col justify-center items-center h-full -mt-10 md:-mt-0">
               {navLinks.map((navLink) => (
                 <li
                   className="hover:text-lime-500 flex flex-col items-center lg:text-base  px-4 py-2 my-8 lg:my-1 font-medium text-xl lg:capitalize uppercase"
@@ -78,11 +78,11 @@ function Navbar() {
           </div>
 
           <div className="flex items-center ml-3">
-            {/* {router.pathname === "/tickets" ? null : ( */}
-            <button className="hover:bg-amber-600 ease-in-out duration-300 bg-amber-500  lg:px-3 px-2 py-2 rounded text-sm font-bold text-zinc-50">
-              <Link href="/tickets">Buy Tickets</Link>
-            </button>
-            {/* )} */}
+            {router.pathname === "/tickets" ? null : (
+              <button className="hover:bg-amber-600 ease-in-out duration-300 bg-amber-500  lg:px-3 px-2 py-2 rounded text-sm font-bold text-zinc-50">
+                <Link href="/tickets">Buy Tickets</Link>
+              </button>
+            )}
 
             <FiMenu
               onClick={() => setIsSidebar(true)}

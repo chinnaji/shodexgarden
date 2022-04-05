@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
-import { AiOutlineCheck } from "react-icons/ai";
 import Payment from "./Payment";
 
 function Checkout({ setIsCart, cart, total }) {
@@ -12,7 +11,8 @@ function Checkout({ setIsCart, cart, total }) {
   // const [date, setDate] = useState("");
   const [isNewsletter, setIsNewsletter] = useState(true);
 
-  const handleCheckout = () => {
+  const handleCheckout = (e) => {
+    e.preventDefault();
     // take user details and save it in state
     // take id of items in cart and send them to the server
     // when the response comes back from the server, pass that value into paystack

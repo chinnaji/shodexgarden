@@ -3,6 +3,7 @@ import Image from "next/image";
 import { BiX } from "react-icons/bi";
 import { BsPlus } from "react-icons/bs";
 import { CgMathMinus } from "react-icons/cg";
+import { GiShoppingCart } from "react-icons/gi";
 // import emptyCart from "../images/empty-cart.png";
 import Checkout from "./Checkout";
 
@@ -47,11 +48,12 @@ function Cart({ cart, setCart, total }) {
 
   return isCart ? (
     <>
-      <h2 className="text-lime-500 text-center font-semibold text-2xl mb-3">
-        Cart Item(s)
-      </h2>
+      {}
       {cart.length > 0 ? (
         <>
+          <h2 className="text-lime-500 text-center font-semibold text-2xl mb-3">
+            Cart Item(s)
+          </h2>
           {cart.sort().map((cartItem, index) => (
             <div
               className=" bg-zinc-50 py-5 px-6 rounded-lg h-fit overflow-hidden my-5  md-my-0 w-full flex md:flex-row justify-between flex-col md:items-center"
@@ -175,18 +177,10 @@ function Cart({ cart, setCart, total }) {
           </div>
         </>
       ) : (
-        <h2 className="text-red-400 text-center font-semibold text-2xl mt-10 mb-24">
-          <span>You Cart Is Empty </span> .
-          <div className="w-56 h-56 relative mx-auto mt-5 rounded-full p-20">
-            <Image
-              src={emptyCart}
-              layout="fill"
-              objectFit="cover"
-              alt="empty cart image"
-              priority
-            />
-          </div>
-        </h2>
+        <div className="text-zinc-700 text-center font-semibold text-2xl my-24 ">
+          <h2>You Cart Is Empty </h2> .
+          <GiShoppingCart className="text-8xl text-zinc-600 mx-auto -m-t-5" />
+        </div>
       )}
     </>
   ) : (

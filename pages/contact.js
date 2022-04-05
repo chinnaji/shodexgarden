@@ -14,10 +14,6 @@ function contact() {
 
         <section className="flex flex-wrap ">
           <div className="w-full lg:w-1/2 p-2 flex flex-wrap ">
-            <div className="w-full">
-              <h2 className="text-3xl my-5 text-zinc-800">Contact Details</h2>
-            </div>
-
             <div className="w-full md:w-1/2 my-5 text-lime-500">
               <GoLocation className="text-4xl mb-3 " />
               <h3 className="text-xl">Our Location</h3>
@@ -99,6 +95,13 @@ function contact() {
                     cols="50"
                     defaultValue="Message"
                     className="w-full d-block px-4 rounded-md focus:outline-none py-2 bg-transparent border-2 border-zinc-300 bg-zinc-100 text-zinc-700"
+                  />
+                </div>
+                <div className="w-full text-center -m-t-5 px-2">
+                  <input
+                    type="submit"
+                    value="SEND"
+                    className="w-full hover:bg-lime-600 cursor-pointer bg-lime-500 ease-in-out duration-300 text-zinc-50  py-4 mx-auto my-5  rounded  font-bold "
                   />
                 </div>
               </form>

@@ -60,7 +60,7 @@ function Payment({ config, setIsPayment, cart }) {
     <div className="relative">
       <BsFillArrowLeftCircleFill
         onClick={() => setIsPayment(false)}
-        className="absolute left-0 -top-7 text-zinc-700 cursor-pointer text-2xl"
+        className="absolute left-0 -top-2 text-zinc-700 cursor-pointer text-2xl"
       />
       {/* <button onClick={() => setPaymentRes(!paymentRes)}>lll</button> */}
 
