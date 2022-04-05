@@ -4,15 +4,17 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import Modal from "./Modal";
 import Link from "next/link";
 import axios from "axios";
+import TicketVerification from "./TicketVerification";
 
 function AdminPage({ orders }) {
   const [isModal, setIsModal] = useState(false);
+  const [orderDetails, setOrderDetails] = useState(false);
+  const [err, setErr] = useState(false);
 
   const [ticketId, setTicketId] = useState("");
   const handleVerifyTicket = (e) => {
     e.preventDefault();
-    // var data = JSON.stringify(ticketId);
-    // console.log(data);
+    setErr(false);
     var toBeSent = {
       method: "post",
       url: `/api/verifyTicket/${ticketId}`,
@@ -24,17 +26,29 @@ function AdminPage({ orders }) {
     axios(toBeSent)
       .then((response) => {
         console.log(response.data);
+        // if (response.data.isValid === true) {
+        setOrderDetails(response.data);
+        setTimeout(() => {
+          setIsModal(true);
+        }, 500);
+        setErr(false);
+        // }
         // setPaymentRes(response.data);
       })
       .catch(function (error) {
         console.log(error);
-        // SetErr(true);
+        setErr(
+          error.toString() == "Error: Request failed with status code 400"
+            ? "Ticket Not Found !"
+            : "error, contact support"
+        );
       });
     // setIsModal(true);
   };
   const tableColumns = ["#", "customer", "Date", "status"];
   return (
     <main className=" max-w-[1200px] mx-auto my-5  px-3">
+      {/**/}
       <form
         onSubmit={handleVerifyTicket}
         className="max-w-sm mx-auto text-center my-24"
@@ -52,12 +66,14 @@ function AdminPage({ orders }) {
           maxLength="11"
           minLength="11"
         />
+        {err ? <p className="mt-2 text-red-600 text-center">{err}</p> : null}
         <input
           type="submit"
           value=" Verify "
           className="w-full hover:bg-lime-600 cursor-pointer bg-lime-500 ease-in-out duration-300 text-zinc-50  py-4 mx-auto my-5  rounded  font-bold "
         />{" "}
       </form>
+      {/*  */}
 
       {/* orders table */}
       <section>
@@ -149,7 +165,7 @@ function AdminPage({ orders }) {
       </section>
 
       <Modal isModal={isModal} setIsModal={setIsModal}>
-        <h1>hello</h1>
+        <TicketVerification order={orderDetails} setIsModal={setIsModal} />
       </Modal>
     </main>
   );

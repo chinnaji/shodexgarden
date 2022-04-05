@@ -76,7 +76,7 @@ function Checkout({ setIsCart, cart, total }) {
           />
         </div>
 
-        <div className="w-100 text-center mt-5">
+        <div className=" text-center mt-5">
           <input
             type="submit"
             value="Proceed To Payment"

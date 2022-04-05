@@ -92,7 +92,7 @@ function TicketsListing({ ticketItems }) {
           ))}
         </div>
         {cart.length > 0 ? (
-          // <div className="w-100 text-center">
+          // <div className=" text-center">
           //   <button
           //     onClick={() => setIsModal(true)}
           //     className="w-full md:w-fit hover:bg-lime-600 bg-lime-500 ease-in-out duration-300 text-zinc-50  py-4 px-24 mx-auto mt-5 mb-32 rounded lg:text-sm font-bold "

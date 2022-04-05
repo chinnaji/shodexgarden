@@ -40,7 +40,9 @@ export default async function handler(req, res) {
           isEmailSent, //check if email has been sent
         };
         // connect to db
-        await db.collection("shodexGardenOrders").insertOne(orderDetails);
+        await db
+          .collection(process.env.ORDERS_COLLECTION)
+          .insertOne(orderDetails);
         // store info to final response
         fullResponse.push({
           message: "order successfull",

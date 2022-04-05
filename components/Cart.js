@@ -167,7 +167,7 @@ function Cart({ cart, setCart, total }) {
             </div>
           </div>
 
-          <div className="w-100 text-center mt-5">
+          <div className=" text-center mt-5">
             <button
               onClick={() => setIsCart(false)}
               className=" w-full hover:bg-lime-600 bg-lime-500 ease-in-out duration-300 text-zinc-50  py-4 mx-auto my-5  rounded lg:text-sm font-bold "

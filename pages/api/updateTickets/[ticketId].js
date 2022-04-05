@@ -1,34 +1,22 @@
 import clientPromise from "../../../lib/mongodb";
-var md5 = require("md5");
 
 export default async function verifyTickets(req, res) {
-  if (req.method === "POST") {
+  if (req.method === "PUT") {
     try {
       const { ticketId } = req.query;
       // hash ticket id
-      var hashedTicketId = md5(ticketId);
 
       const client = await clientPromise;
       const db = client.db(process.env.DB_NAME);
       // fetch the posts
       const data = await db
         .collection(process.env.ORDERS_COLLECTION)
-        .findOne({ ticketId: hashedTicketId });
-      // .toArray();
+        .updateOne({ ticketId: ticketId }, { $set: { isValid: false } });
 
-      // const tickets = JSON.parse(JSON.stringify(data));
-      //   res.status(200).json({
-      //     message: data,
-      //     success: true,
-      //   });
-      if (data === null) {
-        res.status(400).json("not found");
-      } else {
-        res.status(200).json({
-          message: data,
-          success: true,
-        });
-      }
+      res.status(200).json({
+        message: data,
+        success: true,
+      });
     } catch (error) {
       //   return an error
       return res.json({
