@@ -5,15 +5,18 @@ import Modal from "./Modal";
 import Link from "next/link";
 import axios from "axios";
 import TicketVerification from "./TicketVerification";
+import Spinner from "./Spinner";
 
 function AdminPage({ orders }) {
   const [isModal, setIsModal] = useState(false);
   const [orderDetails, setOrderDetails] = useState(false);
   const [err, setErr] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [ticketId, setTicketId] = useState("");
   const handleVerifyTicket = (e) => {
     e.preventDefault();
+    setIsLoading(true);
     setErr(false);
     var toBeSent = {
       method: "post",
@@ -32,6 +35,7 @@ function AdminPage({ orders }) {
           setIsModal(true);
         }, 500);
         setErr(false);
+        setIsLoading(false);
         // }
         // setPaymentRes(response.data);
       })
@@ -42,6 +46,7 @@ function AdminPage({ orders }) {
             ? "Ticket Not Found !"
             : "error, contact support"
         );
+        setIsLoading(false);
       });
     // setIsModal(true);
   };
@@ -67,11 +72,15 @@ function AdminPage({ orders }) {
           minLength="11"
         />
         {err ? <p className="mt-2 text-red-600 text-center">{err}</p> : null}
-        <input
-          type="submit"
-          value=" Verify "
-          className="w-full hover:bg-lime-600 cursor-pointer bg-lime-500 ease-in-out duration-300 text-zinc-50  py-4 mx-auto my-5  rounded  font-bold "
-        />{" "}
+        <button className="flex items-center justify-center w-full hover:bg-lime-600 cursor-pointer bg-lime-500 ease-in-out duration-300 text-zinc-50  py-4 mx-auto my-5  rounded  font-bold ">
+          {isLoading ? (
+            <>
+              <Spinner /> Verifying...
+            </>
+          ) : (
+            "Verify"
+          )}
+        </button>{" "}
       </form>
       {/*  */}
 

@@ -19,6 +19,9 @@ function OrderDone({ ticketId, isError }) {
     <Error />
   ) : (
     <div>
+      <p className="text-sm text-center">
+        Kindly provide the QRcode below👇 at the entrance gate.
+      </p>
       {isError}
       <img src={src} alt="qr code" className="w-[200px] mx-auto" />
 

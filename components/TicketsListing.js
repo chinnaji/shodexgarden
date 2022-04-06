@@ -38,16 +38,16 @@ function TicketsListing({ ticketItems }) {
   return (
     <>
       <section className="max-w-[1200px] mx-auto my-5 mb-40  px-3 pt-10">
-        <h2 className="text-lime-500 text-center font-semibold text-3xl mb-8">
+        <h2 className="text-lime-500 text-center font-semibold text-3xl mb-5 mt-8">
           Book a Ticket, Come Enjoy Yourself!{" "}
         </h2>
-        <div className="w-fit bg-amber-500 rounded-xl flex items-center px-3 text-white py-2 flex-row ml-4">
+        {/* <div className="w-fit bg-amber-500 rounded-xl flex items-center px-3 text-white py-2 flex-row ml-4">
           <FiShoppingCart className="mx-2" />{" "}
           <span className="mr-1 font-semibold text-sm">Cart</span>
           <span className="text-xs mx-2 w-5 h-5 flex items-center justify-center text-grey-500 bg-white rounded-full">
             {cart.length}
           </span>
-        </div>
+        </div> */}
 
         <div className="flex w-full flex-wrap ">
           {ticketItems.map((ticketItem, index) => (
@@ -103,9 +103,12 @@ function TicketsListing({ ticketItems }) {
           <div className="fixed w-full z-40 inset-x-0 bottom-0 backdrop-blur-lg bg-[#ffffff6e]  text-center">
             <button
               onClick={() => setIsModal(true)}
-              className="w-fit hover:bg-lime-600 bg-lime-500 ease-in-out duration-300 text-zinc-50  py-4 px-24 mx-auto my-5  rounded lg:text-sm font-bold "
+              className="flex w-fit hover:bg-lime-600 bg-lime-500 ease-in-out duration-300 text-zinc-50  py-2 md:py-4 px-24 mx-auto my-3 md:my-5  rounded lg:text-sm font-bold "
             >
-              View Cart
+              View Cart{" "}
+              <span className="ml-2 text-xs mx-2 w-5 h-5 flex items-center justify-center text-grey-500 bg-white rounded-full">
+                {cart.length}
+              </span>
             </button>
           </div>
         ) : null}

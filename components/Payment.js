@@ -9,6 +9,7 @@ import OrderDone from "./OrderDone";
 import lookdown from "../images/look-down.jpg";
 import paystack from "../images/paystack.png";
 import Image from "next/image";
+import Spinner from "./Spinner";
 
 function Payment({ config, setIsPayment, cart }) {
   const [isLoading, setIsLoading] = useState(false);
@@ -60,7 +61,10 @@ function Payment({ config, setIsPayment, cart }) {
   };
 
   return isLoading ? (
-    <h2 className="my-10 py-5 text-center">Loading...</h2>
+    <div className="my-10 py-5 flex items-center justify-center">
+      <Spinner />
+      <h2>Generating Ticket...</h2>
+    </div>
   ) : (
     <div className="relative">
       {paymentRes ? null : (
