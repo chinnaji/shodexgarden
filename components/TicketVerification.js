@@ -19,14 +19,14 @@ function TicketVerification({ order, setIsModal }) {
 
     axios(toBeSent)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         if (response.data.message.acknowledged === true) {
           setIsTicketUpdated(true);
         }
         // setPaymentRes(response.data);
       })
       .catch(function (error) {
-        console.log(error);
+        // console.log(error);
         // setErr(
         //   error.toString() == "Error: Request failed with status code 400"
         //     ? "Ticket Not Found !"

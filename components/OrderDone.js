@@ -12,7 +12,7 @@ function OrderDone({ ticketId, isError }) {
         setSrc(url);
       })
       .catch((err) => {
-        console.error(err);
+        // console.error(err);
       });
   }, []);
   return ticketId == "error" || isError ? (

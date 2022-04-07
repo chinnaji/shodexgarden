@@ -153,7 +153,7 @@ ${cleanCart.map(
         }
       });
 
-      console.log(transporter.options.host);
+      // console.log(transporter.options.host);
     }
 
     const verifyPayment = async () => {

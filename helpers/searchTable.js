@@ -1,5 +1,5 @@
 export const searchTable = (searchAble, searchQuery) => {
-  console.log(searchQuerys);
+  // console.log(searchQuerys);
   const results = searchAble.filter((item) => {
     var key = [item.customerDetails.metadata.name];
     searchAble.some(() =>

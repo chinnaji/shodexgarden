@@ -18,7 +18,7 @@ function Payment({ config, setIsPayment, cart }) {
   // you can call this function anything
   const handlePaystackCloseAction = () => {
     // implementation for  whatever you want to do when the Paystack dialog closed.
-    console.log("closed");
+    // console.log("closed");
   };
 
   const componentProps = {
@@ -43,12 +43,12 @@ function Payment({ config, setIsPayment, cart }) {
 
     axios(toBeSent)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setPaymentRes(response.data);
         setIsLoading(false);
       })
       .catch(function (error) {
-        console.log(error);
+        // console.log(error);
         SetErr(true);
         setIsLoading(false);
       });
