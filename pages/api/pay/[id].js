@@ -38,6 +38,7 @@ export default async function handler(req, res) {
           total: total, //verified cart total
           customerDetails: { email, reference, metadata }, //customer details
           isEmailSent, //check if email has been sent
+          usedOn: "0", //date ticket was used
         };
         // connect to db
         await db

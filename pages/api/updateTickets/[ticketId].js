@@ -11,7 +11,10 @@ export default async function verifyTickets(req, res) {
       // fetch the posts
       const data = await db
         .collection(process.env.ORDERS_COLLECTION)
-        .updateOne({ ticketId: ticketId }, { $set: { isValid: false } });
+        .updateOne(
+          { ticketId: ticketId },
+          { $set: { isValid: false, usedOn: new Date().toISOString() } }
+        );
 
       res.status(200).json({
         message: data,

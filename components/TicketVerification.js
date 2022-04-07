@@ -41,7 +41,9 @@ function TicketVerification({ order, setIsModal }) {
         <>
           {" "}
           <BsCheckCircleFill className="text-[5rem] text-lime-500 mx-auto mb-3" />{" "}
-          <h1 className="text-xl font-semibold">Ticket Updated Successfully</h1>
+          <h1 className="text-xl font-semibold text-center mb-10 mt-5">
+            Ticket Updated Successfully
+          </h1>
         </>
       ) : (
         <>
@@ -49,14 +51,14 @@ function TicketVerification({ order, setIsModal }) {
             <section className="py-5">
               {order.message.isValid ? (
                 <div className="w-fit mx-auto px-5 py-2 bg-lime-500 text-white rounded mb-3">
-                  Valid
+                  Ticket is Valid
                 </div>
               ) : (
                 <div className="w-fit mx-auto px-5 py-2 bg-red-600 text-white rounded mb-3">
                   Ticket Has Been Used!
                 </div>
               )}
-              <ul>
+              <ul className="mt-5">
                 <li className="flex my-2">
                   <div className="font-semibold">Name - </div>{" "}
                   <span className="ml-2">
@@ -88,6 +90,16 @@ function TicketVerification({ order, setIsModal }) {
                     {order.message.datePurchased.slice(0, 10)}
                   </span>
                 </li>
+                {order.message.usedOn !== "0" ? (
+                  <li className="flex my-2">
+                    <div className="font-semibold">Date Used - </div>{" "}
+                    <span className="ml-2">
+                      {order.message.usedOn.slice(0, 10)}
+                    </span>
+                  </li>
+                ) : (
+                  ""
+                )}
               </ul>
               <h2 className="text-center font-semibold mt-10 text-lg text-zinc-700 mb-5">
                 Items Purchased
@@ -115,7 +127,7 @@ function TicketVerification({ order, setIsModal }) {
                   <tr>
                     <td
                       colSpan="5"
-                      className="justify-end mr-10 text-center py-5  font-semibold "
+                      className="justify-end mr-10 text-center pt-10  font-semibold "
                     >
                       Total = #
                       {Intl.NumberFormat("en-US").format(order.message.total)}
@@ -128,8 +140,8 @@ function TicketVerification({ order, setIsModal }) {
                   <input
                     onClick={handleTicketUpdate}
                     type="submit"
-                    value="Update Ticket"
-                    className="w-full uppercase hover:bg-lime-600 cursor-pointer bg-lime-500 ease-in-out duration-300 text-zinc-50  py-3 mx-auto   rounded  font-bold "
+                    value="Mark As Used"
+                    className="w-full uppercase hover:bg-lime-600 cursor-pointer bg-lime-500 ease-in-out duration-300 text-zinc-50  py-3 mx-auto   rounded  font-semibold "
                   />
                 </div>
               ) : null}
@@ -140,7 +152,9 @@ function TicketVerification({ order, setIsModal }) {
                 <>
                   {" "}
                   <MdOutlineError className="text-[5rem] text-red-600 mx-auto mb-3" />{" "}
-                  <h1 className="text-xl font-semibold">Ticket Not Found</h1>
+                  <h1 className="text-xl font-semibold text-center">
+                    Ticket Not Found
+                  </h1>
                 </>
               ) : (
                 <>

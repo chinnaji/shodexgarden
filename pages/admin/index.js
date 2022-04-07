@@ -24,8 +24,10 @@ export async function getStaticProps() {
     props: {
       orders,
     },
-    revalidate: 10, // In seconds
+    revalidate: 1, // In seconds
   };
 }
-
+index.getLayout = function getLayout(page) {
+  return <>{page}</>;
+};
 export default index;

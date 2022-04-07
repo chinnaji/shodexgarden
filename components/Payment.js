@@ -70,7 +70,7 @@ function Payment({ config, setIsPayment, cart }) {
       {paymentRes ? null : (
         <BsFillArrowLeftCircleFill
           onClick={() => setIsPayment(false)}
-          className="absolute left-0 -top-2 text-zinc-700 cursor-pointer text-2xl"
+          className="absolute left-0 -top-6 text-zinc-700 cursor-pointer text-2xl"
         />
       )}
       {paymentRes ? (
@@ -81,7 +81,7 @@ function Payment({ config, setIsPayment, cart }) {
         />
       ) : (
         <>
-          <h1 className="text-2xl -mt-3 font-semibold text-zinc-700 text-center ">
+          <h1 className="text-2xl  font-semibold text-zinc-700 text-center ">
             Pay With Paystack
           </h1>
           <div className="w-full md:h-[180px] h-[250px] md:w-1/2 relative rounded-lg text-center mx-auto my-12">
@@ -95,7 +95,7 @@ function Payment({ config, setIsPayment, cart }) {
             />
           </div>
 
-          <div className="px-10 my-5">
+          <div className="md:px-10 my-5">
             <PaystackButton
               {...componentProps}
               className="flex items-center justify-center w-full hover:bg-lime-600 cursor-pointer bg-lime-500 ease-in-out duration-300 text-zinc-50 py-4 mx-auto my-5 rounded font-bold "
