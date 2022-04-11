@@ -114,9 +114,10 @@ export default async function handler(req, res) {
 </thead>
 
 <tbody>
-${cleanCart.map(
-  (row) =>
-    `
+${cleanCart
+  .map(
+    (row) =>
+      `
     <tr>
       <td style="border-bottom: 1px solid #dddddd;padding: 15px;">
         ${row.title}
@@ -129,7 +130,8 @@ ${cleanCart.map(
       </td>
     </tr>
     `
-)}
+  )
+  .join("")}
 </tbody>
 </table>   
 

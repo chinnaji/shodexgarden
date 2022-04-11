@@ -1,13 +1,16 @@
 import AdminLayout from "../components/AdminLayout";
 import MainLayout from "../components/MainLayout";
 import "../styles/globals.css";
+import { SessionProvider } from "next-auth/react";
 
-function MyApp({ Component, pageProps }) {
+function App({ Component, pageProps: { session, ...pageProps } }) {
   if (Component.getLayout) {
     return (
-      <AdminLayout>
-        <Component {...pageProps} />
-      </AdminLayout>
+      <SessionProvider session={session}>
+        <AdminLayout>
+          <Component {...pageProps} />
+        </AdminLayout>
+      </SessionProvider>
     );
   } else {
     return (
@@ -18,4 +21,4 @@ function MyApp({ Component, pageProps }) {
   }
 }
 
-export default MyApp;
+export default App;

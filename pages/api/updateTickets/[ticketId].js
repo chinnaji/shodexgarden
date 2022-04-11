@@ -1,7 +1,10 @@
 import clientPromise from "../../../lib/mongodb";
+import { getSession } from "next-auth/react";
 
 export default async function verifyTickets(req, res) {
-  if (req.method === "PUT") {
+  const session = await getSession({ req });
+
+  if (req.method === "PUT" && session) {
     try {
       const { ticketId } = req.query;
       // hash ticket id

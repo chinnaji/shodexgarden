@@ -1,8 +1,11 @@
 import clientPromise from "../../../lib/mongodb";
 var md5 = require("md5");
+import { getSession } from "next-auth/react";
 
 export default async function verifyTickets(req, res) {
-  if (req.method === "POST") {
+  const session = await getSession({ req });
+
+  if (req.method === "POST" && session) {
     try {
       const { ticketId } = req.query;
       // hash ticket id
@@ -10,7 +13,7 @@ export default async function verifyTickets(req, res) {
 
       const client = await clientPromise;
       const db = client.db(process.env.DB_NAME);
-      // fetch the posts
+      // fetch the orders
       const data = await db
         .collection(process.env.ORDERS_COLLECTION)
         .findOne({ ticketId: hashedTicketId });

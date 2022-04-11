@@ -1,11 +1,11 @@
 import React from "react";
 
-function Spinner() {
+function Spinner({ size }) {
   return (
     <div>
       <svg
         role="status"
-        class="mr-2 w-8 h-8 text-white animate-spin dark:text-white fill-lime-500"
+        className={`mr-2 w-${size} h-${size} text-white animate-spin dark:text-white fill-lime-500`}
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

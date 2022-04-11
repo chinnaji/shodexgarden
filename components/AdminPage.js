@@ -8,6 +8,7 @@ import TicketVerification from "./TicketVerification";
 import Spinner from "./Spinner";
 import TicketDetails from "./TicketDetails";
 import { searchTable } from "../helpers/searchTable";
+import { signOut, useSession } from "next-auth/react";
 
 function AdminPage({ orders }) {
   const [isModal, setIsModal] = useState(false);
@@ -17,6 +18,7 @@ function AdminPage({ orders }) {
   const [isVerify, setIsVerify] = useState(true);
   const [ticket, setTicket] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
+  const { data: session } = useSession();
 
   const [ticketId, setTicketId] = useState("");
   const handleVerifyTicket = (e) => {
@@ -50,7 +52,7 @@ function AdminPage({ orders }) {
         setErr(
           error.toString() == "Error: Request failed with status code 400"
             ? "Ticket Not Found !"
-            : "error, contact support"
+            : "error, try again"
         );
         setIsLoading(false);
       });
@@ -66,6 +68,12 @@ function AdminPage({ orders }) {
   const tableColumns = ["#", "customer", "Date", "status"];
   return (
     <main className=" max-w-[1200px] mx-auto my-5  px-3">
+      <div className="text-center mt-10">
+        <h2 className="text-sm">
+          <sup className="text-lime-500">*</sup> Your Are Logged In As -{" "}
+          {session?.user.name} , {session?.user.email}
+        </h2>
+      </div>
       {/**/}
       <form
         onSubmit={handleVerifyTicket}
@@ -87,7 +95,7 @@ function AdminPage({ orders }) {
         <button className="flex items-center justify-center w-full hover:bg-lime-600 cursor-pointer bg-lime-500 ease-in-out duration-300 text-zinc-50  py-4 mx-auto my-5  rounded  font-bold ">
           {isLoading ? (
             <>
-              <Spinner /> Verifying...
+              <Spinner size="7" /> Verifying...
             </>
           ) : (
             "Verify"

@@ -62,7 +62,7 @@ function Payment({ config, setIsPayment, cart }) {
 
   return isLoading ? (
     <div className="my-10 py-5 flex items-center justify-center">
-      <Spinner />
+      <Spinner size="7" />
       <h2>Generating Ticket...</h2>
     </div>
   ) : (

@@ -2,6 +2,7 @@ import React from "react";
 import landscapeImg from "../images/landscaping.jpg";
 import treeImg from "../images/tree.png";
 import Image from "next/image";
+import Head from "next/head";
 
 function about() {
   const aboutItems = [
@@ -21,6 +22,39 @@ function about() {
 
   return (
     <main className="max-w-[1200px] mx-auto my-5 mb-24  px-3">
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>About Shodex Garden </title>
+        <meta
+          name="description"
+          content="Shodex Gardens has a park, event center and a mini-zoo where friends and family can spend quality time together.
+
+          It is one of the fun places to visit in Lagos."
+        />
+        <meta
+          name="keywords"
+          content="shodex,about shodex garden,shodex garden,gardens in lagos,parks in lagos"
+        />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://shodexgarden.com/about" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="About Us - Shodex Garden " />
+        <meta
+          property="og:description"
+          content="Shodex Garden Is A Well Landscaped Park and Garden With The Perfect Ambience For Events & Hangouts. It is located at 251/253 Ikorodu Rd, Ilupeju 101233, Lagos."
+        />
+        <meta property="og:url" content="https://shodexgarden.com/about" />
+        <meta property="og:site_name" content="Shodex Garden" />
+        <meta
+          property="og:image"
+          content="https://shodexgarden.com/wp-content/uploads/2021/06/shodex_garden-8.jpg"
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:label1" content="Est. reading time" />
+        <meta name="twitter:data1" content="10 minutes" />
+      </Head>
       <h1 className="text-lime-500 text-center font-semibold text-4xl my-16">
         About Us{" "}
       </h1>

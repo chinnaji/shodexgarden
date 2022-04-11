@@ -1,14 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { BiX } from "react-icons/bi";
 
 function Modal({ setIsModal, isModal, children }) {
+  // close on esc
+  const escFunction = useCallback((event) => {
+    if (event.keyCode === 27) {
+      setIsModal(false);
+    }
+  }, []);
   useEffect(() => {
     if (isModal) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
     }
-  });
+
+    document.addEventListener("keydown", escFunction);
+
+    return () => {
+      document.removeEventListener("keydown", escFunction);
+    };
+  }, []);
 
   return (
     <>

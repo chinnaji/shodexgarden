@@ -68,7 +68,9 @@ function ServicesSection() {
 
       <div className="text-center">
         <button className="mx-auto md:-mt-16 hover:bg-lime-600 ease-in-out duration-300 bg-lime-500 py-4  mt-8 px-14  rounded lg:text-sm font-bold text-zinc-50">
-          <Link href="/services">See More</Link>
+          <Link href="/services">
+            <div className="w-full h-full">See More</div>
+          </Link>
         </button>
       </div>
     </section>

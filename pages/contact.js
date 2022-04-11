@@ -3,10 +3,42 @@ import { GoLocation } from "react-icons/go";
 import { BsTelephone, BsEnvelope } from "react-icons/bs";
 import { BiTime } from "react-icons/bi";
 import GoogleMap from "../components/homepage-sections/GoogleMap";
+import Head from "next/head";
 
 function contact() {
   return (
     <>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>Contact Shodex Garden </title>
+        <meta
+          name="description"
+          content="you reach us on - 09063646842. Shodex Gardens has a 24/7 highly reliable customer service "
+        />
+        <meta
+          name="keywords"
+          content="shodex,contact shodex garden,shodex garden,gardens in lagos,parks in lagos"
+        />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://shodexgarden.com/contact" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Contact Us - Shodex Garden " />
+        <meta
+          property="og:description"
+          content="you reach us on - 09063646842. Shodex Gardens has a 24/7 highly reliable customer service "
+        />
+        <meta property="og:url" content="https://shodexgarden.com/contact" />
+        <meta property="og:site_name" content="Shodex Garden" />
+        <meta
+          property="og:image"
+          content="https://shodexgarden.com/wp-content/uploads/2021/06/shodex_garden-8.jpg"
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:label1" content="Est. reading time" />
+        <meta name="twitter:data1" content="10 minutes" />
+      </Head>
       <main className="max-w-[1200px] mx-auto my-5 mb-24  px-3">
         <h1 className="text-lime-500 text-center font-semibold text-4xl my-16">
           Contact Us{" "}

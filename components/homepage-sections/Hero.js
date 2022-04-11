@@ -22,7 +22,7 @@ function Hero() {
               blanditiis ipsa ducimus laborum dolor? Totam nostrum fugit, culpa
             </p>
             <div>
-              <Link href="/" passHref>
+              <Link href="/about" passHref>
                 <button className=" mx-auto lg:mx-0 flex px-7 text-sm py-3  my-6 lg:my-12 bg-lime-500 hover:bg-lime-600 cursor-pointer rounded transition duration-100 ease-out hover:ease-in">
                   <span className="mr-2 font-semibold">About Us</span>
                   {/* <span>

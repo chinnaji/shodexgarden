@@ -9,12 +9,50 @@ import ig6 from "../../images/ig/img (6).jpg";
 import ig7 from "../../images/ig/img (7).jpg";
 import ig8 from "../../images/ig/img (8).jpg";
 import GetQuote from "../../components/GetQuote";
+import Head from "next/head";
 
 function landscaping() {
   const images = [ig1, ig2, ig3, ig4, ig5, ig6, ig7, ig8];
 
   return (
     <main className="max-w-[1200px] mx-auto my-5 mb-24  px-3">
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title> Shodex Garden Services - Events </title>
+        <meta
+          name="description"
+          content="we offer our best creative landscape designs and development"
+        />
+        <meta
+          name="keywords"
+          content="shodex, shodex garden service,shodex garden,gardens in lagos,parks in lagos,landscaping, event hosting, best events centers in lagos, event centers "
+        />
+        <meta name="robots" content="index, follow" />
+        <link
+          rel="canonical"
+          href="https://shodexgarden.com/services/landscaping"
+        />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Services - Shodex Garden " />
+        <meta
+          property="og:description"
+          content="we offer our best creative landscape designs and development"
+        />
+        <meta
+          property="og:url"
+          content="https://shodexgarden.com/services/landscaping"
+        />
+        <meta property="og:site_name" content="Shodex Garden" />
+        <meta
+          property="og:image"
+          content="https://shodexgarden.com/wp-content/uploads/2021/06/shodex_garden-8.jpg"
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:label1" content="Est. reading time" />
+        <meta name="twitter:data1" content="10 minutes" />
+      </Head>
       <h1 className="text-lime-500 text-center font-semibold text-4xl my-16">
         Landcaping{" "}
       </h1>
