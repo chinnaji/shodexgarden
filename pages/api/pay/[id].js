@@ -39,6 +39,7 @@ export default async function handler(req, res) {
           customerDetails: { email, reference, metadata }, //customer details
           isEmailSent, //check if email has been sent
           usedOn: "0", //date ticket was used
+          orderNo: Math.floor(1000 + Math.random() * 9000),
         };
         // connect to db
         await db

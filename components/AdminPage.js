@@ -150,7 +150,9 @@ function AdminPage({ orders }) {
                   key={order._id}
                   onClick={() => handleTicketDetails(order)}
                 >
-                  <td className="whitespace-nowrap p-3">{index + 1}</td>
+                  <td className="whitespace-nowrap p-3">
+                    #{Math.floor(1000 + Math.random() * 9000)}
+                  </td>
 
                   {/* <td className="whitespace-nowrap p-3">
                   <span className={`py-1 px-2 rounded-full font-bolder `}>
