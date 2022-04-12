@@ -6,6 +6,7 @@ export default async function handler(req, res) {
   var QRCode = require("qrcode");
 
   if (req.method === "POST") {
+    const orderNo = Math.floor(1000 + Math.random() * 9000);
     // cart total
     var total = 0;
     // request query
@@ -39,7 +40,7 @@ export default async function handler(req, res) {
           customerDetails: { email, reference, metadata }, //customer details
           isEmailSent, //check if email has been sent
           usedOn: "0", //date ticket was used
-          orderNo: Math.floor(1000 + Math.random() * 9000),
+          orderNo,
         };
         // connect to db
         await db
@@ -49,7 +50,7 @@ export default async function handler(req, res) {
         fullResponse.push({
           message: "order successfull",
           success: true,
-          // orderDetails,
+          orderNo,
           ticketId,
         });
         return res.json(fullResponse);
@@ -104,7 +105,7 @@ export default async function handler(req, res) {
           }</h1> 
           </br></hr> 
           <p style="margin-bottom:20px;">Your ticket purchase hase been successfully confirmed✅. Kindly provide the QRcode below👇 at the entrance gate. </br></hr> Love from Shodex Garden❤. </p>
-      <h3 style="margin-bottom:40px;">Order Summary</h3>    
+      <h3 style="margin-top:30px;margin-bottom:10px;">Order No. #${orderNo}  </h3>    
   <table style="font-size:12px;margin:10px auto;font-family: arial, sans-serif;border: 1px solid #dddddd;">
   <thead >
   <tr>
@@ -136,7 +137,7 @@ ${cleanCart
 </tbody>
 </table>   
 
-<h3 style="text-transform:capitalize;border: 1px solid #dddddd;padding: 15px;text-align-center;">TOTAL PAID - &#8358;${Intl.NumberFormat(
+<h3 style="text-transform:capitalize;border: 1px solid #dddddd;padding: 15px;text-align-center;font-size:2rem;margin-bottom:20px;">TOTAL PAID - &#8358;${Intl.NumberFormat(
             "en-US"
           ).format(total)}</h3> <img style="width:300px;height:300px;" src="` +
           img +

@@ -55,7 +55,7 @@ function TicketsListing({ ticketItems }) {
               className="px-6 rounded-md h-fit overflow-hidden my-10 md-my-0 w-full sm:w-1/2 md:w-1/2 xl:w-1/4 "
               key={ticketItem.title}
             >
-              <div className=" px-2 py-3 rounded-md bg-white">
+              <div className=" px-2 py-3 rounded-md bg-white shadow-lg">
                 <div className="w-full h-48   relative mx-auto ">
                   <Image
                     className="rounded-md hover:grow hover:shadow-lg"
@@ -76,7 +76,7 @@ function TicketsListing({ ticketItems }) {
                 </h4>
 
                 {cart.some((cartItem) => cartItem.id === ticketItem.id) ? (
-                  <button className=" focus:outline-none   w-full  ease-in-out duration-300  text-lime-500  border-2 border-lime-500 py-3  mt-5   rounded lg:text-sm font-bold ">
+                  <button className=" focus:outline-none   w-full  ease-in-out duration-300  text-lime-500  border-2 border-lime-500 py-3  mt-8   rounded lg:text-sm font-bold ">
                     Added To Cart
                   </button>
                 ) : (
@@ -103,7 +103,7 @@ function TicketsListing({ ticketItems }) {
           <div className="fixed w-full z-40 inset-x-0 bottom-0 backdrop-blur-lg bg-[#ffffff6e]  text-center">
             <button
               onClick={() => setIsModal(true)}
-              className="flex w-fit hover:bg-lime-600 bg-lime-500 ease-in-out duration-300 text-zinc-50  py-2 md:py-4 px-24 mx-auto my-3 md:my-5  rounded lg:text-sm font-bold "
+              className="flex w-fit hover:bg-amber-500 bg-amber-600 ease-in-out duration-300 text-zinc-50  py-2 md:py-4 px-24 mx-auto my-3 md:my-5  rounded lg:text-sm font-bold "
             >
               View Cart{" "}
               <span className="ml-2 text-xs mx-2 w-5 h-5 flex items-center justify-center text-grey-500 bg-white rounded-full">

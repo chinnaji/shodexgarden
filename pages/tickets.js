@@ -74,6 +74,7 @@ export async function getStaticProps() {
     props: {
       ticketsFromDb,
     },
+    revalidate: 1,
   };
 }
 

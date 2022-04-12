@@ -64,8 +64,7 @@ function AdminPage({ orders }) {
     setIsVerify(false);
     setIsModal(true);
   };
-
-  const tableColumns = ["#", "customer", "Date", "status"];
+  const tableColumns = ["order no.", "customer", "Date", "status"];
   return (
     <main className=" max-w-[1200px] mx-auto my-5  px-3">
       <div className="text-center mt-10">
@@ -112,7 +111,7 @@ function AdminPage({ orders }) {
         </h2>
         <>
           {/* search table */}
-          {/* <div className="flex">
+          <div className="flex">
             <div class="mb-3 xl:w-96">
               <div class="input-group relative flex flex-wrap items-stretch w-full mb-4">
                 <input
@@ -125,7 +124,7 @@ function AdminPage({ orders }) {
                 />
               </div>
             </div>
-          </div> */}
+          </div>
 
           <table className="  text-sm w-full text-zinc-400 bg-white">
             <thead className="bg-zinc-200  py-10">
@@ -150,9 +149,7 @@ function AdminPage({ orders }) {
                   key={order._id}
                   onClick={() => handleTicketDetails(order)}
                 >
-                  <td className="whitespace-nowrap p-3">
-                    #{Math.floor(1000 + Math.random() * 9000)}
-                  </td>
+                  <td className="whitespace-nowrap p-3">#{order.orderNo}</td>
 
                   {/* <td className="whitespace-nowrap p-3">
                   <span className={`py-1 px-2 rounded-full font-bolder `}>

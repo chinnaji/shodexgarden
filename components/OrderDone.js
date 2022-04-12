@@ -3,7 +3,7 @@ import QRCode from "qrcode";
 import { FaDownload } from "react-icons/fa";
 import Error from "./Error";
 
-function OrderDone({ ticketId, isError }) {
+function OrderDone({ ticketId, isError, orderNo }) {
   const [src, setSrc] = useState("");
   useEffect(() => {
     QRCode.toDataURL(ticketId)
@@ -19,12 +19,21 @@ function OrderDone({ ticketId, isError }) {
     <Error />
   ) : (
     <div>
-      <p className="text-sm text-center">
+      <p className="text-base mb-5 text-center">
         Kindly provide the QRcode below👇 at the entrance gate.
       </p>
       {isError}
-      <img src={src} alt="qr code" className="w-[200px] mx-auto" />
-
+      <h1 className="text-center font-semibold text-xl text-black">
+        Order No. #{orderNo}
+      </h1>
+      <img
+        src={src}
+        alt="shodex gate pass ticket"
+        className="w-[200px] mx-auto my-0"
+      />
+      <p className="text-amber-600 text-sm text-center">
+        *check your email for more details on your order.
+      </p>
       <div className="w-full text-center mt-5">
         <a
           href={src}

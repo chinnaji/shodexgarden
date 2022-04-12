@@ -20,6 +20,7 @@ function Payment({ config, setIsPayment, cart }) {
     // implementation for  whatever you want to do when the Paystack dialog closed.
     // console.log("closed");
   };
+  console.log(paymentRes);
 
   const componentProps = {
     ...config,
@@ -77,6 +78,7 @@ function Payment({ config, setIsPayment, cart }) {
         <OrderDone
           // ticketId={paymentRes && paymentRes.ticketId}
           ticketId={paymentRes ? paymentRes[0].ticketId : "error"}
+          orderNo={paymentRes ? paymentRes[0].orderNo : "error"}
           isError={err}
         />
       ) : (
