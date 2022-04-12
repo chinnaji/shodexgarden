@@ -1,5 +1,7 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
+import clientPromise from "../../../lib/mongodb";
 
 export default NextAuth({
   providers: [
@@ -14,7 +16,11 @@ export default NextAuth({
     encryption: true,
   },
   secret: process.env.SECRET,
-  theme: "light",
+  theme: {
+    colorScheme: "light", // "auto" | "dark" | "light"
+    brandColor: "#357D4D", // Hex color value
+    // logo: "", // Absolute URL to logo image
+  },
   callbacks: {
     // async jwt(token, account) {
     //   if (account?.accessToken) {
@@ -40,5 +46,7 @@ export default NextAuth({
         // return '/unauthorized'
       }
     },
+    adapter: MongoDBAdapter(clientPromise),
+    database: process.env.MONGODB_URI,
   },
 });
