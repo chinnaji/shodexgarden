@@ -20,7 +20,7 @@ function Payment({ config, setIsPayment, cart }) {
     // implementation for  whatever you want to do when the Paystack dialog closed.
     // console.log("closed");
   };
-  console.log(paymentRes);
+  // console.log(paymentRes);
 
   const componentProps = {
     ...config,

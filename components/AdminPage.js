@@ -21,6 +21,7 @@ function AdminPage({ orders }) {
   const { data: session } = useSession();
 
   const [ticketId, setTicketId] = useState("");
+  // console.log(orders);
   const handleVerifyTicket = (e) => {
     e.preventDefault();
     setIsVerify(true);

@@ -26,7 +26,7 @@ function ServicesSection() {
 
   return (
     <section className="mt-32 w-full text-grey-500">
-      <h2 className="text-lime-500 text-center font-semibold text-4xl mb-32">
+      <h2 className="text-lime-500 text-center font-semibold text-4xl mb-24 md:mb-32">
         Our Services
       </h2>
 

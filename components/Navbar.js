@@ -31,7 +31,7 @@ function Navbar() {
   const [isSidebar, setIsSidebar] = useState(false);
 
   return (
-    <header className=" max-h-20 overflow-hidden w-full text-zinc-600 sticky top-0 bg-white z-50">
+    <header className="shadow-xs max-h-20 overflow-hidden w-full text-zinc-600 sticky top-0 bg-white z-50">
       <nav className=" max-w-[1200px] mx-auto flex items-center justify-between px-5 md:px-3 ">
         <Link href="/" passHref>
           <a className="w-24 h-16 relative cursor-pointer block">

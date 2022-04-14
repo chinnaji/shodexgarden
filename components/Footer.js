@@ -70,6 +70,10 @@ function Footer() {
             </li>
           </ul>
         </div>
+
+        <div className="w-full text-center pt-3 border-t">
+          &copy;Copyright 2022 Shodex Garden.
+        </div>
       </section>
     </footer>
   );
