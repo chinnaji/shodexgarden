@@ -9,7 +9,7 @@ import Spinner from "./Spinner";
 import TicketDetails from "./TicketDetails";
 import { searchTable } from "../helpers/searchTable";
 import { signOut, useSession } from "next-auth/react";
-import { CSVLink, CSVDownload } from "react-csv";
+// import { CSVLink, CSVDownload } from "react-csv";
 
 function AdminPage({ orders }) {
   const [isModal, setIsModal] = useState(false);
@@ -69,21 +69,21 @@ function AdminPage({ orders }) {
   };
   const tableColumns = ["order no.", "customer", "Date", "status"];
 
-  const headers = [
-    { label: "OrderNumber", key: "orderNo" },
-    { label: "Total", key: "total" },
-    { label: " Name", key: "customerDetails.metadata.name" },
-    { label: " Phone Number", key: "customerDetails.metadata.phone" },
-    { label: " Email", key: "customerDetails.email" },
-    { label: "Valid", key: "isValid" },
-    { label: "Date Purchased", key: "datePurchased" },
-    { label: "Date Purchased", key: "datePurchased" },
-  ];
+  // const headers = [
+  //   { label: "OrderNumber", key: "orderNo" },
+  //   { label: "Total", key: "total" },
+  //   { label: " Name", key: "customerDetails.metadata.name" },
+  //   { label: " Phone Number", key: "customerDetails.metadata.phone" },
+  //   { label: " Email", key: "customerDetails.email" },
+  //   { label: "Valid", key: "isValid" },
+  //   { label: "Date Purchased", key: "datePurchased" },
+  // ];
+
   return (
     <main className=" max-w-[1200px] mx-auto my-5  px-3">
-      <CSVLink data={orders} headers={headers}>
+      {/* <CSVLink data={orders} headers={headers}>
         Download me
-      </CSVLink>
+      </CSVLink> */}
       <div className="text-center mt-10">
         <h2 className="text-sm">
           <sup className="text-lime-500">*</sup> Your Are Logged In As -{" "}
@@ -130,7 +130,7 @@ function AdminPage({ orders }) {
           {/* search table */}
           <div className="flex">
             <div class="mb-3 xl:w-96">
-              <div class="input-group relative flex flex-wrap items-stretch w-full mb-4">
+              {/* <div class="input-group relative flex flex-wrap items-stretch w-full mb-4">
                 <input
                   type="search"
                   class="form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-800 bg-zinc-100 bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-lime-500 focus:outline-none"
@@ -139,7 +139,7 @@ function AdminPage({ orders }) {
                   aria-describedby="button-addon2"
                   onInput={(e) => setSearchQuery(e.target.value)}
                 />
-              </div>
+              </div> */}
             </div>
           </div>
 

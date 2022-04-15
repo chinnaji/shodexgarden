@@ -6,7 +6,11 @@ export const searchTable = (searchAble, searchQuery) => {
   // searchAble.filter(
   // (item) => item.orderNo.toString() == searchQuery.toLowerCase();
   // );
-  const tableColumns = ["orderNo"];
+  const tableColumns = [
+    "orderNo",
+    "datePurchased",
+    "customerDetails.metadata.name",
+  ];
 
   const results = searchAble.filter((item) =>
     tableColumns.some((key) =>
