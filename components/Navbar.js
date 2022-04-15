@@ -62,27 +62,22 @@ function Navbar() {
             <ul className="flex lg:flex-row ml-auto flex-col justify-center items-center h-full -mt-10 md:-mt-0">
               {navLinks.map((navLink) => (
                 <li
-                  className="hover:text-lime-500 flex flex-col items-center lg:text-base  px-4 py-2 my-8 lg:my-1 font-medium text-xl lg:capitalize uppercase"
+                  className="hover:text-lime-500 flex flex-col items-center lg:text-sm  px-4 py-2 my-8 lg:my-1 font-medium text-lg lg:capitalize uppercase"
                   onClick={() => setIsSidebar(false)}
                   key={navLink.title}
                 >
                   <Link href={navLink.path}>{navLink.title}</Link>
-                  {/* {router.pathname === "/" ? (
-                    <span className="w-2 h-2 bg-lime-500 rounded-full"></span>
-                  ) : (
-                    ""
-                  )} */}
                 </li>
               ))}
             </ul>
           </div>
 
           <div className="flex items-center ml-3">
-            {router.pathname === "/tickets" ? null : (
-              <button className="hover:bg-amber-600 ease-in-out duration-300 bg-amber-500  lg:px-3 px-2 py-2 rounded text-sm font-bold text-zinc-50">
-                <Link href="/tickets">Buy Tickets</Link>
-              </button>
-            )}
+            {/* {router.pathname === "/tickets" ? null : ( */}
+            <button className="hover:bg-amber-600 ease-in-out duration-300 bg-amber-500  lg:px-3 px-2 py-2 rounded text-sm font-semibold text-zinc-50">
+              <Link href="/tickets">Buy Tickets</Link>
+            </button>
+            {/* )} */}
 
             <FiMenu
               onClick={() => setIsSidebar(true)}

@@ -17,6 +17,10 @@ function TicketDetails({ ticket }) {
             )}
             <ul className="mt-5">
               <li className="flex my-2">
+                <div className="font-semibold">Order No. - </div>{" "}
+                <span className="ml-2">#{ticket.orderNo}</span>
+              </li>
+              <li className="flex my-2">
                 <div className="font-semibold">Name - </div>{" "}
                 <span className="ml-2">
                   {ticket.customerDetails.metadata.name}

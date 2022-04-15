@@ -38,11 +38,11 @@ function AdminNavbar() {
             >
               {session?.user.name[0]}
             </div> */}
-            <div className="flex items-center justify-center">
-              <div
-                onClick={() => setIsDropDown(!isDropDown)}
-                className="mr-1 overflow-hidden relative w-8 h-8 bg-amber-500 cursor-pointer text-white font-semibold flex items-center justify-center text-xs rounded-full"
-              >
+            <div
+              className="flex items-center justify-center cursor-pointer"
+              onClick={() => setIsDropDown(!isDropDown)}
+            >
+              <div className="mr-1 overflow-hidden relative w-8 h-8 bg-amber-500 cursor-pointer text-white font-semibold flex items-center justify-center text-xs rounded-full">
                 <Image
                   src={session?.user.image}
                   layout="fill"

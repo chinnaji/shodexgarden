@@ -69,7 +69,7 @@ function Hero() {
           objectFit="cover"
           alt="hero background image"
           className="rounded-lg"
-          placeholder="blur"
+          // placeholder="blur"
         />
       </div>
     </section>

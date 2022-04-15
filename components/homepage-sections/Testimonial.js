@@ -8,7 +8,7 @@ function Testimonial() {
   const testimonials = [
     {
       name: "Oghenovo Egodo M.",
-      text: "Shodex Garden is an absolutely lovely place. If you’re a garden or park person or even just generally looking for a serene open space for a small get-together, Shodex is definitely your answer! The place is so big- it has a zoo, a pool, a mini eat-out, a bar, a playground for kids, and even space for an event. I love it.🙂					",
+      text: "Shodex Garden is an absolutely lovely place. If you’re a garden or park person or even just generally looking for a serene open space for a small get-together, Shodex is definitely your answer! The place is so big- it has a zoo, a pool, a mini eat-out, a bar, and even space for an event. I love it.🙂					",
       image: review2,
     },
     {

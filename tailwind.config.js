@@ -5,7 +5,6 @@ module.exports = {
   ],
 
   theme: {
-    darkMode: "class",
     extend: {
       colors: {
         lime: {

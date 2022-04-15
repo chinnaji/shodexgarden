@@ -9,6 +9,7 @@ import Spinner from "./Spinner";
 import TicketDetails from "./TicketDetails";
 import { searchTable } from "../helpers/searchTable";
 import { signOut, useSession } from "next-auth/react";
+import { CSVLink, CSVDownload } from "react-csv";
 
 function AdminPage({ orders }) {
   const [isModal, setIsModal] = useState(false);
@@ -20,6 +21,7 @@ function AdminPage({ orders }) {
   const [searchQuery, setSearchQuery] = useState("");
   const { data: session } = useSession();
 
+  console.log(orders);
   const [ticketId, setTicketId] = useState("");
   // console.log(orders);
   const handleVerifyTicket = (e) => {
@@ -66,8 +68,22 @@ function AdminPage({ orders }) {
     setIsModal(true);
   };
   const tableColumns = ["order no.", "customer", "Date", "status"];
+
+  const headers = [
+    { label: "OrderNumber", key: "orderNo" },
+    { label: "Total", key: "total" },
+    { label: " Name", key: "customerDetails.metadata.name" },
+    { label: " Phone Number", key: "customerDetails.metadata.phone" },
+    { label: " Email", key: "customerDetails.email" },
+    { label: "Valid", key: "isValid" },
+    { label: "Date Purchased", key: "datePurchased" },
+    { label: "Date Purchased", key: "datePurchased" },
+  ];
   return (
     <main className=" max-w-[1200px] mx-auto my-5  px-3">
+      <CSVLink data={orders} headers={headers}>
+        Download me
+      </CSVLink>
       <div className="text-center mt-10">
         <h2 className="text-sm">
           <sup className="text-lime-500">*</sup> Your Are Logged In As -{" "}
@@ -127,51 +143,52 @@ function AdminPage({ orders }) {
             </div>
           </div>
 
-          <table className="  text-sm w-full text-zinc-400 bg-white">
-            <thead className="bg-zinc-200  py-10">
-              <tr>
-                {tableColumns.map((column, index) => (
-                  <th
-                    className={` uppercase px-6 text-left py-4 text-sm text-zinc-500 ${
-                      index == 2 ? "md:table-cell hidden" : ""
-                    }`}
-                    key={column}
+          <section className="w-full overflow-x-auto">
+            <table className="  text-sm w-full text-zinc-400 bg-white">
+              <thead className="bg-zinc-200  py-10">
+                <tr>
+                  {tableColumns.map((column, index) => (
+                    <th
+                      className={` uppercase px-6 text-left py-4 text-sm text-zinc-500 ${
+                        index == 2 ? "md:table-cell hidden" : ""
+                      }`}
+                      key={column}
+                    >
+                      {column}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+
+              <tbody>
+                {searchTable(orders, searchQuery).map((order, index) => (
+                  <tr
+                    className=" my-2 hover:bg-lime-50 border-t-2 py-2 cursor-pointer"
+                    key={order._id}
+                    onClick={() => handleTicketDetails(order)}
                   >
-                    {column}
-                  </th>
-                ))}
-              </tr>
-            </thead>
+                    <td className="whitespace-nowrap p-3">#{order.orderNo}</td>
 
-            <tbody>
-              {searchTable(orders, searchQuery).map((order, index) => (
-                <tr
-                  className=" my-2 hover:bg-lime-50 border-t-2 py-2 cursor-pointer"
-                  key={order._id}
-                  onClick={() => handleTicketDetails(order)}
-                >
-                  <td className="whitespace-nowrap p-3">#{order.orderNo}</td>
-
-                  {/* <td className="whitespace-nowrap p-3">
+                    {/* <td className="whitespace-nowrap p-3">
                   <span className={`py-1 px-2 rounded-full font-bolder `}>
                     {order._id}
                   </span>
                 </td> */}
-                  <td className="whitespace-nowrap p-3">
-                    <span className={`py-1 px-2 rounded-full font-bolder `}>
-                      {order.customerDetails.metadata.name}
-                    </span>
-                  </td>
+                    <td className="whitespace-nowrap p-3">
+                      <span className={`py-1 px-2 rounded-full font-bolder `}>
+                        {order.customerDetails.metadata.name}
+                      </span>
+                    </td>
 
-                  <td className="whitespace-nowrap p-3 md:table-cell hidden">
-                    <span className={`py-1 px-2 rounded-full font-bolder `}>
-                      {order.datePurchased.slice(0, 10)}
-                    </span>
-                  </td>
-                  <td className="whitespace-nowrap p-3 flex items-center">
-                    {/* {order.regNo} */}
-                    <span className="ml-2 text-xs">
-                      {/* {order.isValid ? (
+                    <td className="whitespace-nowrap p-3 md:table-cell hidden">
+                      <span className={`py-1 px-2 rounded-full font-bolder `}>
+                        {order.datePurchased.slice(0, 10)}
+                      </span>
+                    </td>
+                    <td className="whitespace-nowrap p-3 flex items-center">
+                      {/* {order.regNo} */}
+                      <span className="ml-2 text-xs">
+                        {/* {order.isValid ? (
                       <span>
                         <BsCheckCircleFill className="text-lime-500 text-xl" />{" "}
                       </span>
@@ -180,36 +197,37 @@ function AdminPage({ orders }) {
                         <AiFillCloseCircle className="text-red-500 text-xl" />{" "}
                       </span>
                     )} */}
-                      {order.isValid ? (
-                        <span className="bg-lime-500 text-zinc-50 rounded px-5 py-1">
-                          Valid
-                          {/* // <BsCheckCircleFill  />{" "} */}
-                        </span>
-                      ) : (
-                        <span className="bg-red-500 text-zinc-50 rounded px-5 py-1">
-                          Used
-                          {/* // <BsCheckCircleFill  />{" "} */}
-                        </span>
-                      )}
-                    </span>
-                  </td>
-                  {/* 
+                        {order.isValid ? (
+                          <span className="bg-lime-500 text-zinc-50 rounded px-5 py-1">
+                            Valid
+                            {/* // <BsCheckCircleFill  />{" "} */}
+                          </span>
+                        ) : (
+                          <span className="bg-red-500 text-zinc-50 rounded px-5 py-1">
+                            Used
+                            {/* // <BsCheckCircleFill  />{" "} */}
+                          </span>
+                        )}
+                      </span>
+                    </td>
+                    {/* 
                     <td className="whitespace-nowrap p-3">
                       <span className={`py-1 px-2 rounded-full font-bolder `}>
                         {order.zoneId}
                       </span>
                     </td> */}
 
-                  {/* <td className="whitespace-nowrap p-3  flex  items-center">
+                    {/* <td className="whitespace-nowrap p-3  flex  items-center">
                   <span className="py-1 px-4 bg-amber-600 hover:bg-amber-700 text-white rounded cursor-pointer">
                   </span>
 
                  
                 </td> */}
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </section>
         </>
       </section>
 

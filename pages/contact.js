@@ -1,11 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 import { GoLocation } from "react-icons/go";
 import { BsTelephone, BsEnvelope } from "react-icons/bs";
 import { BiTime } from "react-icons/bi";
 import GoogleMap from "../components/homepage-sections/GoogleMap";
 import Head from "next/head";
+import { BsFillCheckCircleFill } from "react-icons/bs";
+import { FaPaperPlane } from "react-icons/fa";
 
 function contact() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [message, setMessage] = useState("");
+  const [isSent, setIsSent] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleContactForm = (e) => {
+    e.preventDefault();
+    const contactData = {
+      name,
+      email,
+      phoneNumber,
+      message,
+    };
+
+    // console.log(contactData);
+    setIsLoading(true);
+    fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(contactData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // console.log("Success:", data);
+        if (data.success === true) {
+          setIsSent(true);
+          setIsLoading(false);
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+
   return (
     <>
       <Head>
@@ -80,64 +120,92 @@ function contact() {
           </div>
 
           <div className="w-full lg:w-1/2 p-2 h-fit  flex flex-wrap ">
-            <div className="w-full  ">
-              <h2 className="text-3xl my-5 text-zinc-800">Get A Free Quote</h2>
-            </div>
-
-            <div className="w-full text-lime-500">
-              <form
-                action=""
-                className="flex flex-wrap items-center text-zinc-600"
-              >
-                <div className="w-full md:w-1/2  my-2  p-2">
-                  <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    placeholder="Name"
-                    className="w-full d-block px-4 rounded-md focus:outline-none py-2 bg-transparent border-2 border-zinc-300 bg-zinc-100 text-zinc-700"
-                  />
+            {isSent ? (
+              <section className="my-10 py-10  px-2 max-w-6xl	mx-auto flex flex-wrap flex-col justify-center items-center">
+                <span className="w-32 h-32 shadow-lg shadow-lime-500/40  bg-lime-500 flex items-center justify-center rounded-full">
+                  <BsFillCheckCircleFill className="text-zinc-100 text-4xl" />
+                </span>
+                <h3 className="text-xl mt-5">Message Successfully Sent!</h3>
+              </section>
+            ) : (
+              <>
+                <div className="w-full  ">
+                  <h2 className="text-3xl my-5 text-zinc-800">
+                    Get A Free Quote
+                  </h2>
                 </div>
 
-                <div className="w-full md:w-1/2  p-2">
-                  <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    placeholder="Email Adress"
-                    className="w-full d-block px-4 rounded-md focus:outline-none py-2 bg-transparent border-2 border-zinc-300 bg-zinc-100 text-zinc-700"
-                  />
-                </div>
+                <div className="w-full text-lime-500">
+                  <form
+                    onSubmit={handleContactForm}
+                    className="flex flex-wrap items-center text-zinc-600"
+                  >
+                    <div className="w-full md:w-1/2  my-2  p-2">
+                      <input
+                        onChange={(e) => setName(e.target.value)}
+                        type="text"
+                        name="name"
+                        id="name"
+                        required
+                        placeholder="Name"
+                        className="w-full d-block px-4 rounded-md focus:outline-none py-2 bg-transparent border-2 border-zinc-300 bg-zinc-100 text-zinc-700"
+                      />
+                    </div>
 
-                <div className="w-full my-2 p-2">
-                  <input
-                    type="text"
-                    name="phone"
-                    id="phone"
-                    placeholder="Phone Number"
-                    className="w-full d-block px-4 rounded-md focus:outline-none py-2 bg-transparent border-2 border-zinc-300 bg-zinc-100 text-zinc-700"
-                  />
-                </div>
+                    <div className="w-full md:w-1/2  p-2">
+                      <input
+                        onChange={(e) => setEmail(e.target.value)}
+                        type="email"
+                        name="email"
+                        id="email"
+                        required
+                        placeholder="Email Adress"
+                        className="w-full d-block px-4 rounded-md focus:outline-none py-2 bg-transparent border-2 border-zinc-300 bg-zinc-100 text-zinc-700"
+                      />
+                    </div>
 
-                <div className="w-full my-2 p-2">
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows="4"
-                    cols="50"
-                    defaultValue="Message"
-                    className="w-full d-block px-4 rounded-md focus:outline-none py-2 bg-transparent border-2 border-zinc-300 bg-zinc-100 text-zinc-700"
-                  />
+                    <div className="w-full my-2 p-2">
+                      <input
+                        type="text"
+                        name="phone"
+                        id="phone"
+                        onChange={(e) => setPhoneNumber(e.target.value)}
+                        required
+                        placeholder="Phone Number"
+                        className="w-full d-block px-4 rounded-md focus:outline-none py-2 bg-transparent border-2 border-zinc-300 bg-zinc-100 text-zinc-700"
+                      />
+                    </div>
+
+                    <div className="w-full my-2 p-2">
+                      <textarea
+                        id="message"
+                        name="message"
+                        rows="4"
+                        cols="5"
+                        required
+                        placeholder="Message"
+                        onChange={(e) => setMessage(e.target.value)}
+                        className="w-full d-block px-4 rounded-md focus:outline-none py-2 bg-transparent border-2 border-zinc-300 bg-zinc-100 text-zinc-700"
+                      />
+                    </div>
+                    <div className="w-full text-white text-center -m-t-5 px-2">
+                      <button className=" mb-12 mt-5 md:w-fit text-center w-full  mx-auto  flex justify-center items-center px-7 text-sm py-3   bg-lime-500 hover:bg-lime-600 cursor-pointer rounded transition duration-100 ease-out hover:ease-in">
+                        {isLoading ? (
+                          <span className="mr-2 font-semibold">Loading...</span>
+                        ) : (
+                          <>
+                            <span className="mr-2 font-semibold">SEND</span>
+                            <span>
+                              <FaPaperPlane className="text-xl" />
+                            </span>
+                          </>
+                        )}
+                      </button>
+                    </div>
+                  </form>
                 </div>
-                <div className="w-full text-center -m-t-5 px-2">
-                  <input
-                    type="submit"
-                    value="SEND"
-                    className="w-full hover:bg-lime-600 cursor-pointer bg-lime-500 ease-in-out duration-300 text-zinc-50  py-4 mx-auto my-5  rounded  font-bold "
-                  />
-                </div>
-              </form>
-            </div>
+              </>
+            )}
           </div>
         </section>
       </main>
