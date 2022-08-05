@@ -74,7 +74,7 @@ export default async function handler(req, res) {
       let transporter = nodemailer.createTransport({
         host: process.env.NODEMAILER_HOST,
         port: parseInt(process.env.NODEMAILER_PORT),
-        secure: false, // true for 465, false for other ports
+        secure: true, // true for 465, false for other ports
         auth: {
           user: process.env.NODEMAILER_USER,
           pass: process.env.NODEMAILER_PASS,
@@ -149,8 +149,8 @@ ${cleanCart
       transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
           // fullResponse.push({ nodemaileErr: error.reason.toString() });
-          // console.log(error);
-          saveToDb(error.reason.toString());
+          console.log(error);
+          // saveToDb(error.reason.toString());
         } else {
           saveToDb("email sent");
           // fullResponse.push({ nodemaileErr: "success" });
@@ -256,7 +256,7 @@ ${cleanCart
 
     validateCart();
   } else {
-    return res.status(400).json("path not found");
+    return res.status(400).json("err");
     // Handle any other HTTP method
   }
 }
