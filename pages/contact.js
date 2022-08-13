@@ -131,7 +131,7 @@ function contact() {
               <>
                 <div className="w-full  ">
                   <h2 className="text-3xl my-5 text-zinc-800">
-                    Get A Free Quote
+                    Get A Free Quote!
                   </h2>
                 </div>
 
